@@ -16,7 +16,7 @@ namespace BabatyeInventory
         {
             try
             {
-                using (C.Con)
+                using ()
                 {
                     SqlCommand cmd = new SqlCommand("AddCloths", C.Con)
                     {
