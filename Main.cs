@@ -13,7 +13,7 @@ namespace BabatyeInventory
     public partial class Main : Form
     {
         readonly Cloth cloth = new Cloth();
-        DAL dal = new DAL();
+        readonly DAL dal = new DAL();
 
         public Main()
         {
@@ -26,6 +26,7 @@ namespace BabatyeInventory
             cloth.Name = TxtSKUNum.Text.Substring(0, 6);
             cloth.Color = cloth.ProductColor();
             cloth.Size = cloth.ProductSize();
+
             int Result = dal.InsertCloth(cloth);
             try
             {

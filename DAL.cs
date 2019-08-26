@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BabatyeInventory
 {
     class DAL
     {
-        readonly DbConn C = new DbConn();
+        public SqlConnection Con = new SqlConnection("Data Source=.\\SQLEXPRESS01;Initial Catalog=babatie;Integrated Security=True");
+
         public int InsertCloth(Cloth cloth)
         {
             try
             {
-                using ()
-                {
-                    SqlCommand cmd = new SqlCommand("AddCloths", C.Con)
+                    SqlCommand cmd = new SqlCommand("AddCloths", Con)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -28,9 +23,8 @@ namespace BabatyeInventory
                     cmd.Parameters.Add(new SqlParameter("@Color", cloth.Color));
                     cmd.Connection.Open();
                     int Result = cmd.ExecuteNonQuery();
-                    C.Con.Close();
+                    Con.Close();
                     return Result;
-                }
             }
             catch (Exception ex)
             {
