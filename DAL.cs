@@ -7,13 +7,13 @@ namespace BabatyeInventory
 {
     class DAL
     {
-        public SqlConnection Con = new SqlConnection("Data Source=.\\SQLEXPRESS01;Initial Catalog=babatie;Integrated Security=True");
+        DbConn C = new DbConn();
 
         public int InsertCloth(Cloth cloth)
         {
             try
             {
-                    SqlCommand cmd = new SqlCommand("AddCloths", Con)
+                    SqlCommand cmd = new SqlCommand("AddCloth", C.Con)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -23,7 +23,7 @@ namespace BabatyeInventory
                     cmd.Parameters.Add(new SqlParameter("@Color", cloth.Color));
                     cmd.Connection.Open();
                     int Result = cmd.ExecuteNonQuery();
-                    Con.Close();
+                    C.Con.Close();
                     return Result;
             }
             catch (Exception ex)

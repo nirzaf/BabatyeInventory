@@ -19,17 +19,25 @@ namespace BabatyeInventory
         {
             try
             {
-                if (SKUNumber.Substring(7, 2) == "BL")
+                if (SKUNumber.Length == 12)
                 {
-                    return Color = "BLACK";
-                }
-                else if (SKUNumber.Substring(7, 2) == "GR")
-                {
-                    return Color = "GREEN";
+                    if (SKUNumber.Substring(7, 2) == "BL")
+                    {
+                        return Color = "BLACK";
+                    }
+                    else if (SKUNumber.Substring(7, 2) == "GR")
+                    {
+                        return Color = "GREEN";
+                    }
+                    else
+                    {
+                        return Color = "Null";
+                    }
                 }
                 else
                 {
-                    return Color = "Null";
+                    MessageBox.Show("Invalid SKU Code");
+                    return Color = "Invalid Colour";
                 }
             }
             catch (Exception ex)

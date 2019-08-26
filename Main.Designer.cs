@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TxtSKUNum = new System.Windows.Forms.TextBox();
             this.BtnInsert = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -37,15 +38,31 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.babatyeDataSet = new BabatyeInventory.babatyeDataSet();
+            this.tblclothsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tbl_clothsTableAdapter = new BabatyeInventory.babatyeDataSetTableAdapters.tbl_clothsTableAdapter();
+            this.sKUDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colourDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.countDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.babatyeDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblclothsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtSKUNum
             // 
             this.TxtSKUNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSKUNum.Location = new System.Drawing.Point(149, 111);
+            this.TxtSKUNum.MaxLength = 12;
             this.TxtSKUNum.Name = "TxtSKUNum";
             this.TxtSKUNum.Size = new System.Drawing.Size(241, 29);
             this.TxtSKUNum.TabIndex = 0;
+            this.TxtSKUNum.TextChanged += new System.EventHandler(this.TxtSKUNum_TextChanged);
+            this.TxtSKUNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSKUNum_KeyPress);
+            this.TxtSKUNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSKUNum_KeyUp);
             // 
             // BtnInsert
             // 
@@ -124,11 +141,73 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Product Name";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.sKUDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.sizeDataGridViewTextBoxColumn,
+            this.colourDataGridViewTextBoxColumn,
+            this.countDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.tblclothsBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(5, 268);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(533, 171);
+            this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
+            // 
+            // babatyeDataSet
+            // 
+            this.babatyeDataSet.DataSetName = "babatyeDataSet";
+            this.babatyeDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tblclothsBindingSource
+            // 
+            this.tblclothsBindingSource.DataMember = "tbl_cloths";
+            this.tblclothsBindingSource.DataSource = this.babatyeDataSet;
+            // 
+            // tbl_clothsTableAdapter
+            // 
+            this.tbl_clothsTableAdapter.ClearBeforeFill = true;
+            // 
+            // sKUDataGridViewTextBoxColumn
+            // 
+            this.sKUDataGridViewTextBoxColumn.DataPropertyName = "SKU";
+            this.sKUDataGridViewTextBoxColumn.HeaderText = "SKU";
+            this.sKUDataGridViewTextBoxColumn.Name = "sKUDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // sizeDataGridViewTextBoxColumn
+            // 
+            this.sizeDataGridViewTextBoxColumn.DataPropertyName = "Size";
+            this.sizeDataGridViewTextBoxColumn.HeaderText = "Size";
+            this.sizeDataGridViewTextBoxColumn.Name = "sizeDataGridViewTextBoxColumn";
+            // 
+            // colourDataGridViewTextBoxColumn
+            // 
+            this.colourDataGridViewTextBoxColumn.DataPropertyName = "Colour";
+            this.colourDataGridViewTextBoxColumn.HeaderText = "Colour";
+            this.colourDataGridViewTextBoxColumn.Name = "colourDataGridViewTextBoxColumn";
+            // 
+            // countDataGridViewTextBoxColumn
+            // 
+            this.countDataGridViewTextBoxColumn.DataPropertyName = "Count";
+            this.countDataGridViewTextBoxColumn.HeaderText = "Count";
+            this.countDataGridViewTextBoxColumn.Name = "countDataGridViewTextBoxColumn";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 228);
+            this.ClientSize = new System.Drawing.Size(538, 468);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -140,6 +219,10 @@
             this.Controls.Add(this.TxtSKUNum);
             this.Name = "Main";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Main_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.babatyeDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblclothsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +239,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private babatyeDataSet babatyeDataSet;
+        private System.Windows.Forms.BindingSource tblclothsBindingSource;
+        private babatyeDataSetTableAdapters.tbl_clothsTableAdapter tbl_clothsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sKUDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sizeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colourDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn countDataGridViewTextBoxColumn;
     }
 }
 
