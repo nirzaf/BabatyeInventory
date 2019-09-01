@@ -13,7 +13,7 @@ namespace BabatyeInventory
         public string Name { get; set;}
         public string Size { get; set; }
         public string Color { get; set; }
-
+        DAL dal = new DAL();
 
         public string ProductColor()
         {
@@ -26,17 +26,49 @@ namespace BabatyeInventory
             {
                 try
                 {
-                    if (SKUNumber.Substring(7, 2) == "BL")
+                    if (SKUNumber.Contains("BK"))
                     {
-                        Color = "BLACK";
+                        Color = "Black";
                     }
-                    else if (SKUNumber.Substring(7, 2) == "GR")
+                    else if (SKUNumber.Contains("GR"))
                     {
-                        Color = "GREEN";
+                        Color = "Green";
+                    }
+                    else if (SKUNumber.Contains("WH"))
+                    {
+                        Color = "White";
+                    }
+                    else if (SKUNumber.Contains("BE"))
+                    {
+                        Color = "Beige";
+                    }
+                    else if (SKUNumber.Contains("AP"))
+                    {
+                        Color = "Apricot";
+                    }
+                    else if (SKUNumber.Contains("KH"))
+                    {
+                        Color = "Khaki";
+                    }
+                    else if (SKUNumber.Contains("BR"))
+                    {
+                        Color = "Brown";
+                    }
+                    else if (SKUNumber.Contains("BL"))
+                    {
+                        Color = "Blue";
+                    }
+                    else if (SKUNumber.Contains("RD"))
+                    {
+                        Color = "Red";
+                    }
+                    else if (SKUNumber.Contains("GY"))
+                    {
+                        Color = "Gray";
                     }
                     else
                     {
-                        Color = "Null";
+                        Color = "";
                     }
                 }
                 catch (Exception ex)
@@ -50,24 +82,62 @@ namespace BabatyeInventory
 
         public string ProductSize()
         {
+            string SizeKey = "";
             if (string.IsNullOrEmpty(SKUNumber))
             {
                 MessageBox.Show("SKU Number cannot be null or Empty");
                 return Size = "";               
             }
-           string SizeKey = SKUNumber.Substring(10, 2);
+            if(!string.IsNullOrEmpty(SKUNumber) && SKUNumber.Length > 6)
+                SizeKey = SKUNumber.Substring(SKUNumber.Length - 2);
 
-            if (SizeKey == "02")
+            if (SizeKey == "01")
             {
-                return Size = "Small";
+                return Size = "XS";
+            }
+            else if (SizeKey == "02")
+            {
+                return Size = "S";
             }
             else if (SizeKey == "03")
             {
-                return Size = "Medium";
+                return Size = "M";
             }
             else if (SizeKey == "04")
             {
-                return Size = "Large";
+                return Size = "L";
+            }
+            else if (SizeKey == "05")
+            {
+                return Size = "XL";
+            }
+            else if (SizeKey == "06")
+            {
+                return Size = "XXL";
+            }
+            else if (SizeKey == "28")
+            {
+                return Size = "XS";
+            }
+            else if (SizeKey == "30")
+            {
+                return Size = "S";
+            }
+            else if (SizeKey == "32")
+            {
+                return Size = "M";
+            }
+            else if (SizeKey == "34")
+            {
+                return Size = "L";
+            }
+            else if (SizeKey == "36")
+            {
+                return Size = "XL";
+            }
+            else if (SizeKey == "38")
+            {
+                return Size = "XXL";
             }
             else
             {
@@ -81,9 +151,13 @@ namespace BabatyeInventory
             {
                 MessageBox.Show("SKU Number cannot be null or Empty");
                 return Name = "";
-            } 
-            Name = SKUNumber.Substring(0, 6);
-            return Name;
+            }
+
+            Name = dal.GetName(SKUNumber);
+            if (!string.IsNullOrEmpty(Name))
+                return Name;
+            else
+                return "";
         }
     }
 }

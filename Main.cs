@@ -22,6 +22,11 @@ namespace BabatyeInventory
 
         private void BtnInsert_Click(object sender, EventArgs e)
         {
+            InsertProduct();
+        }
+
+        public void InsertProduct()
+        {
             cloth.SKUNumber = TxtSKUNum.Text.Trim();
             cloth.Name = TxtSKUNum.Text.Substring(0, 6);
             cloth.Color = cloth.ProductColor();
@@ -33,14 +38,18 @@ namespace BabatyeInventory
                 if (Result > 0)
                 {
                     MessageBox.Show("Product Added Successfully");
+                    LoadDGV();
                 }
                 else
                 {
                     DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                        TxtColor.Text = cloth.ProductColor();
+                        TxtSize.Text = cloth.ProductSize();
+                        //TxtName.Text = cloth.ProductName();
                         DisplayTextBoxes();
-                       
                     }
                     else if (dialogResult == DialogResult.No)
                     {
@@ -60,12 +69,34 @@ namespace BabatyeInventory
             label1.Text = cloth.ProductColor();
             label2.Text = cloth.ProductSize();
             label3.Text = cloth.ProductName();
-
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
             HideTextBoxes();
+            LoadDGV();
+        }
+
+        public void LoadDGV()
+        {
+            DGVExistingItems.DataSource = dal.LoadDGV();
+
+            //set autosize mode
+            DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            //datagrid has calculated it's widths so we can store them
+            for (int i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
+            {
+                //store autosized widths
+                int colw = DGVExistingItems.Columns[i].Width;
+                //remove autosizing
+                DGVExistingItems.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                //set width to calculated by autosize
+                DGVExistingItems.Columns[i].Width = colw;
+            }
+
         }
 
         public void HideTextBoxes()
@@ -83,6 +114,13 @@ namespace BabatyeInventory
             TxtColor.Visible = true;
             TxtSize.Visible = true;
             TxtName.Visible = true;
+
+            if (TxtColor.Text.Trim() != "")
+                TxtColor.Enabled = false;
+
+            if (TxtSize.Text.Trim() != "")
+                TxtSize.Enabled = false;
+
             BtnAddNewItem.Visible = true;
             BtnAddNewItem.Enabled = true;
             BtnInsert.Enabled = false;
@@ -90,50 +128,79 @@ namespace BabatyeInventory
 
         private void BtnAddNewItem_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(TxtSKUNum.Text.Trim()))
+            if(!string.IsNullOrEmpty(TxtSKUNum.Text.Trim()))
             {
                 cloth.SKUNumber = TxtSKUNum.Text.Trim();
-            }else
+                if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
+                {
+                    cloth.Color = TxtColor.Text.Trim();
+                    if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
+                    {
+                        cloth.Size = TxtSize.Text.Trim();
+                        if (!string.IsNullOrEmpty(TxtName.Text.Trim()))
+                        {
+                            cloth.Name = TxtName.Text.Trim();
+                            int Result = dal.AddNewCloth(cloth);
+                            if (Result > 0)
+                            {
+                                MessageBox.Show("New Item Added Successfully");
+                                LoadDGV();
+                                HideTextBoxes();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Something went Wrong");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Size cannot be empty");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Size cannot be empty");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Color cannot be empty");
+                    return;
+                }
+            }
+            else
             {
                 MessageBox.Show("SKU Number cannot be empty");
-            }
+                return;
+            }          
+        }
 
-            if (string.IsNullOrEmpty(TxtColor.Text.Trim()))
+        private void TxtSKUNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
             {
-                cloth.Color = TxtColor.Text.Trim();
+                InsertProduct();
             }
-            else
-            {
-                MessageBox.Show("Color cannot be empty");
-            }
+        }
 
-            if (string.IsNullOrEmpty(TxtSize.Text.Trim()))
+        private void TxtSKUNum_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
             {
-                cloth.Size = TxtSize.Text.Trim();
+                InsertProduct();
             }
-            else
-            {
-                MessageBox.Show("Size cannot be empty");
-            }
+        }
 
-            if (string.IsNullOrEmpty(TxtName.Text.Trim()))
+        private void TxtSKUNum_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TxtSKUNum.Text))
             {
-                cloth.Name = TxtName.Text.Trim();
-            }
-            else
-            {
-                MessageBox.Show("Size cannot be empty");
-            }
-
-            int Result = dal.AddNewCloth(cloth);
-            if (Result > 0)
-            {
-                MessageBox.Show("New Item Added Successfully");
-                HideTextBoxes();
-            }
-            else
-            {
-                MessageBox.Show("Something went Wrong");
+                cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                label1.Text = cloth.ProductColor();
+                label2.Text = cloth.ProductSize();
+                label3.Text = cloth.ProductName();
             }
         }
     }
