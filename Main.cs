@@ -107,6 +107,7 @@ namespace BabatyeInventory
             BtnAddNewItem.Visible = false;
             BtnAddNewItem.Enabled = false;
             BtnInsert.Enabled = true;
+            PBAddNewItem.Visible = false;
         }
 
         public void DisplayTextBoxes()
@@ -114,6 +115,7 @@ namespace BabatyeInventory
             TxtColor.Visible = true;
             TxtSize.Visible = true;
             TxtName.Visible = true;
+            PBAddNewItem.Visible = true;
 
             if (TxtColor.Text.Trim() != "")
                 TxtColor.Enabled = false;
@@ -124,11 +126,17 @@ namespace BabatyeInventory
             BtnAddNewItem.Visible = true;
             BtnAddNewItem.Enabled = true;
             BtnInsert.Enabled = false;
+            PBInsert.Visible = false;
         }
 
         private void BtnAddNewItem_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(TxtSKUNum.Text.Trim()))
+            AddNewItem();
+        }
+
+        public void AddNewItem()
+        {
+            if (!string.IsNullOrEmpty(TxtSKUNum.Text.Trim()))
             {
                 cloth.SKUNumber = TxtSKUNum.Text.Trim();
                 if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
@@ -174,7 +182,7 @@ namespace BabatyeInventory
             {
                 MessageBox.Show("SKU Number cannot be empty");
                 return;
-            }          
+            }
         }
 
         private void TxtSKUNum_KeyPress(object sender, KeyPressEventArgs e)
@@ -202,6 +210,16 @@ namespace BabatyeInventory
                 label2.Text = cloth.ProductSize();
                 label3.Text = cloth.ProductName();
             }
+        }
+
+        private void PBInsert_Click(object sender, EventArgs e)
+        {
+            InsertProduct();
+        }
+
+        private void PBAddNewItem_Click(object sender, EventArgs e)
+        {
+            AddNewItem();
         }
     }
 }

@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.TxtSKUNum = new System.Windows.Forms.TextBox();
-            this.BtnInsert = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,8 +42,13 @@
             this.BtnAddNewItem = new System.Windows.Forms.Button();
             this.DGVExistingItems = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
+            this.BtnInsert = new System.Windows.Forms.Button();
+            this.PBAddNewItem = new System.Windows.Forms.PictureBox();
+            this.PBInsert = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,16 +61,6 @@
             this.TxtSKUNum.TabIndex = 0;
             this.TxtSKUNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSKUNum_KeyPress_1);
             this.TxtSKUNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSKUNum_KeyUp);
-            // 
-            // BtnInsert
-            // 
-            this.BtnInsert.Location = new System.Drawing.Point(448, 85);
-            this.BtnInsert.Name = "BtnInsert";
-            this.BtnInsert.Size = new System.Drawing.Size(241, 32);
-            this.BtnInsert.TabIndex = 1;
-            this.BtnInsert.Text = "Insert";
-            this.BtnInsert.UseVisualStyleBackColor = true;
-            this.BtnInsert.Click += new System.EventHandler(this.BtnInsert_Click);
             // 
             // label1
             // 
@@ -148,7 +142,7 @@
             // 
             // BtnAddNewItem
             // 
-            this.BtnAddNewItem.Location = new System.Drawing.Point(448, 123);
+            this.BtnAddNewItem.Location = new System.Drawing.Point(460, 371);
             this.BtnAddNewItem.Name = "BtnAddNewItem";
             this.BtnAddNewItem.Size = new System.Drawing.Size(241, 30);
             this.BtnAddNewItem.TabIndex = 12;
@@ -164,7 +158,7 @@
             this.DGVExistingItems.GridColor = System.Drawing.Color.White;
             this.DGVExistingItems.Location = new System.Drawing.Point(12, 262);
             this.DGVExistingItems.Name = "DGVExistingItems";
-            this.DGVExistingItems.Size = new System.Drawing.Size(711, 251);
+            this.DGVExistingItems.Size = new System.Drawing.Size(401, 251);
             this.DGVExistingItems.TabIndex = 13;
             // 
             // label7
@@ -176,6 +170,39 @@
             this.label7.Size = new System.Drawing.Size(166, 20);
             this.label7.TabIndex = 14;
             this.label7.Text = "Enter SKU Number ";
+            // 
+            // BtnInsert
+            // 
+            this.BtnInsert.Location = new System.Drawing.Point(448, 422);
+            this.BtnInsert.Name = "BtnInsert";
+            this.BtnInsert.Size = new System.Drawing.Size(241, 32);
+            this.BtnInsert.TabIndex = 1;
+            this.BtnInsert.Text = "Insert";
+            this.BtnInsert.UseVisualStyleBackColor = true;
+            this.BtnInsert.Click += new System.EventHandler(this.BtnInsert_Click);
+            // 
+            // PBAddNewItem
+            // 
+            this.PBAddNewItem.Image = global::BabatyeInventory.Properties.Resources.Add_icon;
+            this.PBAddNewItem.Location = new System.Drawing.Point(579, 76);
+            this.PBAddNewItem.Name = "PBAddNewItem";
+            this.PBAddNewItem.Size = new System.Drawing.Size(66, 64);
+            this.PBAddNewItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBAddNewItem.TabIndex = 17;
+            this.PBAddNewItem.TabStop = false;
+            this.PBAddNewItem.Visible = false;
+            this.PBAddNewItem.Click += new System.EventHandler(this.PBAddNewItem_Click);
+            // 
+            // PBInsert
+            // 
+            this.PBInsert.Image = global::BabatyeInventory.Properties.Resources.Floppy_Small_icon;
+            this.PBInsert.Location = new System.Drawing.Point(489, 76);
+            this.PBInsert.Name = "PBInsert";
+            this.PBInsert.Size = new System.Drawing.Size(66, 64);
+            this.PBInsert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBInsert.TabIndex = 16;
+            this.PBInsert.TabStop = false;
+            this.PBInsert.Click += new System.EventHandler(this.PBInsert_Click);
             // 
             // pictureBox1
             // 
@@ -191,7 +218,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(736, 525);
+            this.ClientSize = new System.Drawing.Size(737, 525);
+            this.Controls.Add(this.PBAddNewItem);
+            this.Controls.Add(this.PBInsert);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.DGVExistingItems);
@@ -214,6 +243,8 @@
             this.Text = "Babatye Inventory Management System";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -237,6 +268,8 @@
         private System.Windows.Forms.DataGridView DGVExistingItems;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox PBInsert;
+        private System.Windows.Forms.PictureBox PBAddNewItem;
     }
 }
 
