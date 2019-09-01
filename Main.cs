@@ -251,16 +251,19 @@ namespace BabatyeInventory
             range = xlWorkSheet.UsedRange;
             rw = range.Rows.Count;
             cl = range.Columns.Count;
-
+            int TotalProducts = 0;
             for (rCnt = 1; rCnt <= rw; rCnt++)
             {
                 for (cCnt = 1; cCnt <= cl; cCnt++)
                 {
                     str = (string)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
                     TxtSKUNum.Text = str;
-                    InsertProduct();
+                    cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                    dal.InsertCloth(cloth);
+                    TotalProducts++;
                 }
             }
+            MessageBox.Show( TotalProducts.ToString() + " Added Successfully " );
             xlWorkBook.Close(true, null, null);
             xlApp.Quit();
             Marshal.ReleaseComObject(xlWorkSheet);
