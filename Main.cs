@@ -36,7 +36,16 @@ namespace BabatyeInventory
                 }
                 else
                 {
-                    MessageBox.Show("Something Went Wrong");
+                    DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        DisplayTextBoxes();
+                       
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
                 }
             }
             catch (Exception ex)
@@ -52,6 +61,50 @@ namespace BabatyeInventory
             label2.Text = cloth.ProductSize();
             label3.Text = cloth.ProductName();
 
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            HideTextBoxes();
+        }
+
+        public void HideTextBoxes()
+        {
+            TxtColor.Visible = false;
+            TxtSize.Visible = false;
+            TxtName.Visible = false;
+            BtnAddNewItem.Visible = false;
+            BtnAddNewItem.Enabled = false;
+            BtnInsert.Enabled = true;
+        }
+
+        public void DisplayTextBoxes()
+        {
+            TxtColor.Visible = true;
+            TxtSize.Visible = true;
+            TxtName.Visible = true;
+            BtnAddNewItem.Visible = true;
+            BtnAddNewItem.Enabled = true;
+            BtnInsert.Enabled = false;
+        }
+
+        private void BtnAddNewItem_Click(object sender, EventArgs e)
+        {
+            cloth.SKUNumber = TxtSKUNum.Text.Trim();
+            TxtColor.Text = cloth.ProductColor();
+            TxtSize.Text = cloth.ProductSize();
+            TxtName.Text = cloth.ProductName();
+
+            int Result = dal.AddNewCloth(cloth);
+            if (Result > 0)
+            {
+                MessageBox.Show("New Item Added Successfully");
+                HideTextBoxes();
+            }
+            else
+            {
+                MessageBox.Show("Something went Wrong");
+            }
         }
     }
 }

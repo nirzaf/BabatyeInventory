@@ -30,13 +30,16 @@
         {
             this.TxtSKUNum = new System.Windows.Forms.TextBox();
             this.BtnInsert = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.TxtColor = new System.Windows.Forms.TextBox();
+            this.TxtSize = new System.Windows.Forms.TextBox();
+            this.TxtName = new System.Windows.Forms.TextBox();
+            this.BtnAddNewItem = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TxtSKUNum
@@ -56,16 +59,6 @@
             this.BtnInsert.Text = "Insert";
             this.BtnInsert.UseVisualStyleBackColor = true;
             this.BtnInsert.Click += new System.EventHandler(this.BtnInsert_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(211, 181);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 28);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "View";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // label1
             // 
@@ -124,22 +117,57 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "Product Name";
             // 
+            // TxtColor
+            // 
+            this.TxtColor.Location = new System.Drawing.Point(27, 29);
+            this.TxtColor.Name = "TxtColor";
+            this.TxtColor.Size = new System.Drawing.Size(126, 20);
+            this.TxtColor.TabIndex = 9;
+            // 
+            // TxtSize
+            // 
+            this.TxtSize.Location = new System.Drawing.Point(211, 29);
+            this.TxtSize.Name = "TxtSize";
+            this.TxtSize.Size = new System.Drawing.Size(128, 20);
+            this.TxtSize.TabIndex = 10;
+            // 
+            // TxtName
+            // 
+            this.TxtName.Location = new System.Drawing.Point(398, 29);
+            this.TxtName.Name = "TxtName";
+            this.TxtName.Size = new System.Drawing.Size(135, 20);
+            this.TxtName.TabIndex = 11;
+            // 
+            // BtnAddNewItem
+            // 
+            this.BtnAddNewItem.Location = new System.Drawing.Point(211, 182);
+            this.BtnAddNewItem.Name = "BtnAddNewItem";
+            this.BtnAddNewItem.Size = new System.Drawing.Size(140, 31);
+            this.BtnAddNewItem.TabIndex = 12;
+            this.BtnAddNewItem.Text = "Add New Item";
+            this.BtnAddNewItem.UseVisualStyleBackColor = true;
+            this.BtnAddNewItem.Click += new System.EventHandler(this.BtnAddNewItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 228);
+            this.ClientSize = new System.Drawing.Size(578, 451);
+            this.Controls.Add(this.BtnAddNewItem);
+            this.Controls.Add(this.TxtName);
+            this.Controls.Add(this.TxtSize);
+            this.Controls.Add(this.TxtColor);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.BtnInsert);
             this.Controls.Add(this.TxtSKUNum);
             this.Name = "Main";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,13 +177,16 @@
 
         private System.Windows.Forms.TextBox TxtSKUNum;
         private System.Windows.Forms.Button BtnInsert;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TxtColor;
+        private System.Windows.Forms.TextBox TxtSize;
+        private System.Windows.Forms.TextBox TxtName;
+        private System.Windows.Forms.Button BtnAddNewItem;
     }
 }
 

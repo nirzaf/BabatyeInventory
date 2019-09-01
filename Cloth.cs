@@ -17,30 +17,44 @@ namespace BabatyeInventory
 
         public string ProductColor()
         {
-            try
+            if (string.IsNullOrEmpty(SKUNumber))
             {
-                if (SKUNumber.Substring(7, 2) == "BL")
-                {
-                    return Color = "BLACK";
-                }
-                else if (SKUNumber.Substring(7, 2) == "GR")
-                {
-                    return Color = "GREEN";
-                }
-                else
-                {
-                    return Color = "Null";
-                }
+                MessageBox.Show("SKU Number cannot be null or Empty");
+                return Color = "";
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-                throw;
+                try
+                {
+                    if (SKUNumber.Substring(7, 2) == "BL")
+                    {
+                        Color = "BLACK";
+                    }
+                    else if (SKUNumber.Substring(7, 2) == "GR")
+                    {
+                        Color = "GREEN";
+                    }
+                    else
+                    {
+                        Color = "Null";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Color = ex.Message;
+                }
+                return Color;
             }
         }
 
         public string ProductSize()
         {
+            if (string.IsNullOrEmpty(SKUNumber))
+            {
+                MessageBox.Show("SKU Number cannot be null or Empty");
+                return Size = "";               
+            }
            string SizeKey = SKUNumber.Substring(10, 2);
 
             if (SizeKey == "02")
@@ -57,12 +71,17 @@ namespace BabatyeInventory
             }
             else
             {
-                return Size = "Null";
+                return Size = "";
             }
         }
 
         public string ProductName()
         {
+            if (string.IsNullOrEmpty(SKUNumber))
+            {
+                MessageBox.Show("SKU Number cannot be null or Empty");
+                return Name = "";
+            } 
             Name = SKUNumber.Substring(0, 6);
             return Name;
         }
