@@ -246,29 +246,38 @@ namespace BabatyeInventory
             int rw = 0;
             int cl = 0;
             xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Open(LblFilePath.Text , 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            range = xlWorkSheet.UsedRange;
-            rw = range.Rows.Count;
-            cl = range.Columns.Count;
-            int TotalProducts = 0;
-            for (rCnt = 1; rCnt <= rw; rCnt++)
+            if (LblFilePath.Text != "")
             {
-                for (cCnt = 1; cCnt <= cl; cCnt++)
+                xlWorkBook = xlApp.Workbooks.Open(LblFilePath.Text, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                range = xlWorkSheet.UsedRange;
+                rw = range.Rows.Count;
+                cl = range.Columns.Count;
+                int TotalProducts = 1;
+                for (rCnt = 1; rCnt <= rw; rCnt++)
                 {
-                    str = (string)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
-                    TxtSKUNum.Text = str;
-                    cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                    dal.InsertCloth(cloth);
-                    TotalProducts++;
+                    for (cCnt = 1; cCnt <= cl; cCnt++)
+                    {
+                        str = (string)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
+                        TxtSKUNum.Text = str;
+                        cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                        int Result = dal.InsertCloth(cloth);
+                        TotalProducts += Result;
+                        LoadDGV();
+                    }
                 }
+                MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully ");
+                LoadDGV();
+                xlWorkBook.Close(true, null, null);
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlWorkSheet);
+                Marshal.ReleaseComObject(xlWorkBook);
+                Marshal.ReleaseComObject(xlApp);
             }
-            MessageBox.Show( TotalProducts.ToString() + " Added Successfully " );
-            xlWorkBook.Close(true, null, null);
-            xlApp.Quit();
-            Marshal.ReleaseComObject(xlWorkSheet);
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
+            else
+            {
+                MessageBox.Show("File Name Not Selected");
+            }
         }
     }
 }

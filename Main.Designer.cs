@@ -47,14 +47,12 @@
             this.PBInsert = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BtnReadFromExcel = new System.Windows.Forms.Button();
-            this.DGVExcel = new System.Windows.Forms.DataGridView();
             this.BtnLoad = new System.Windows.Forms.Button();
             this.LblFilePath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVExcel)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtSKUNum
@@ -224,20 +222,9 @@
             this.BtnReadFromExcel.Name = "BtnReadFromExcel";
             this.BtnReadFromExcel.Size = new System.Drawing.Size(75, 23);
             this.BtnReadFromExcel.TabIndex = 18;
-            this.BtnReadFromExcel.Text = "Read";
+            this.BtnReadFromExcel.Text = "Open";
             this.BtnReadFromExcel.UseVisualStyleBackColor = true;
             this.BtnReadFromExcel.Click += new System.EventHandler(this.BtnReadFromExcel_Click);
-            // 
-            // DGVExcel
-            // 
-            this.DGVExcel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.DGVExcel.BackgroundColor = System.Drawing.Color.White;
-            this.DGVExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVExcel.GridColor = System.Drawing.Color.White;
-            this.DGVExcel.Location = new System.Drawing.Point(512, 288);
-            this.DGVExcel.Name = "DGVExcel";
-            this.DGVExcel.Size = new System.Drawing.Size(191, 196);
-            this.DGVExcel.TabIndex = 19;
             // 
             // BtnLoad
             // 
@@ -252,7 +239,7 @@
             // LblFilePath
             // 
             this.LblFilePath.AutoSize = true;
-            this.LblFilePath.Location = new System.Drawing.Point(471, 262);
+            this.LblFilePath.Location = new System.Drawing.Point(471, 433);
             this.LblFilePath.Name = "LblFilePath";
             this.LblFilePath.Size = new System.Drawing.Size(0, 13);
             this.LblFilePath.TabIndex = 21;
@@ -265,7 +252,6 @@
             this.ClientSize = new System.Drawing.Size(719, 525);
             this.Controls.Add(this.LblFilePath);
             this.Controls.Add(this.BtnLoad);
-            this.Controls.Add(this.DGVExcel);
             this.Controls.Add(this.BtnReadFromExcel);
             this.Controls.Add(this.DGVExistingItems);
             this.Controls.Add(this.PBAddNewItem);
@@ -294,7 +280,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVExcel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,7 +305,6 @@
         private System.Windows.Forms.PictureBox PBInsert;
         private System.Windows.Forms.PictureBox PBAddNewItem;
         private System.Windows.Forms.Button BtnReadFromExcel;
-        private System.Windows.Forms.DataGridView DGVExcel;
         private System.Windows.Forms.Button BtnLoad;
         private System.Windows.Forms.Label LblFilePath;
     }
