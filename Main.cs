@@ -90,10 +90,40 @@ namespace BabatyeInventory
 
         private void BtnAddNewItem_Click(object sender, EventArgs e)
         {
-            cloth.SKUNumber = TxtSKUNum.Text.Trim();
-            TxtColor.Text = cloth.ProductColor();
-            TxtSize.Text = cloth.ProductSize();
-            TxtName.Text = cloth.ProductName();
+            if(string.IsNullOrEmpty(TxtSKUNum.Text.Trim()))
+            {
+                cloth.SKUNumber = TxtSKUNum.Text.Trim();
+            }else
+            {
+                MessageBox.Show("SKU Number cannot be empty");
+            }
+
+            if (string.IsNullOrEmpty(TxtColor.Text.Trim()))
+            {
+                cloth.Color = TxtColor.Text.Trim();
+            }
+            else
+            {
+                MessageBox.Show("Color cannot be empty");
+            }
+
+            if (string.IsNullOrEmpty(TxtSize.Text.Trim()))
+            {
+                cloth.Size = TxtSize.Text.Trim();
+            }
+            else
+            {
+                MessageBox.Show("Size cannot be empty");
+            }
+
+            if (string.IsNullOrEmpty(TxtName.Text.Trim()))
+            {
+                cloth.Name = TxtName.Text.Trim();
+            }
+            else
+            {
+                MessageBox.Show("Size cannot be empty");
+            }
 
             int Result = dal.AddNewCloth(cloth);
             if (Result > 0)
