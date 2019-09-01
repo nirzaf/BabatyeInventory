@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.OleDb;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace BabatyeInventory
 {
@@ -28,7 +25,14 @@ namespace BabatyeInventory
         public void InsertProduct()
         {
             cloth.SKUNumber = TxtSKUNum.Text.Trim();
-            cloth.Name = TxtSKUNum.Text.Substring(0, 6);
+            if (!string.IsNullOrEmpty(TxtName.Text.Trim()))
+            {
+                cloth.Name = TxtName.Text.Trim();
+            }
+            else
+            {
+                TxtName.Focus();
+            }
             cloth.Color = cloth.ProductColor();
             cloth.Size = cloth.ProductSize();
 
@@ -48,7 +52,6 @@ namespace BabatyeInventory
                         cloth.SKUNumber = TxtSKUNum.Text.Trim();
                         TxtColor.Text = cloth.ProductColor();
                         TxtSize.Text = cloth.ProductSize();
-                        //TxtName.Text = cloth.ProductName();
                         DisplayTextBoxes();
                     }
                     else if (dialogResult == DialogResult.No)
@@ -220,6 +223,49 @@ namespace BabatyeInventory
         private void PBAddNewItem_Click(object sender, EventArgs e)
         {
             AddNewItem();
+        }
+
+        private void BtnReadFromExcel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog Ofd = new OpenFileDialog();
+            if (Ofd.ShowDialog() == DialogResult.OK)
+            {
+                LblFilePath.Text = Ofd.FileName;
+            }
+        }
+
+        private void BtnLoad_Click(object sender, EventArgs e)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            Excel.Range range;
+            string str;
+            int rCnt;
+            int cCnt;
+            int rw = 0;
+            int cl = 0;
+            xlApp = new Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Open(LblFilePath.Text , 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            range = xlWorkSheet.UsedRange;
+            rw = range.Rows.Count;
+            cl = range.Columns.Count;
+
+            for (rCnt = 1; rCnt <= rw; rCnt++)
+            {
+                for (cCnt = 1; cCnt <= cl; cCnt++)
+                {
+                    str = (string)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
+                    TxtSKUNum.Text = str;
+                    InsertProduct();
+                }
+            }
+            xlWorkBook.Close(true, null, null);
+            xlApp.Quit();
+            Marshal.ReleaseComObject(xlWorkSheet);
+            Marshal.ReleaseComObject(xlWorkBook);
+            Marshal.ReleaseComObject(xlApp);
         }
     }
 }

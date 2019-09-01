@@ -46,18 +46,23 @@
             this.PBAddNewItem = new System.Windows.Forms.PictureBox();
             this.PBInsert = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.BtnReadFromExcel = new System.Windows.Forms.Button();
+            this.DGVExcel = new System.Windows.Forms.DataGridView();
+            this.BtnLoad = new System.Windows.Forms.Button();
+            this.LblFilePath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVExcel)).BeginInit();
             this.SuspendLayout();
             // 
             // TxtSKUNum
             // 
             this.TxtSKUNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSKUNum.Location = new System.Drawing.Point(448, 41);
+            this.TxtSKUNum.Location = new System.Drawing.Point(460, 41);
             this.TxtSKUNum.Name = "TxtSKUNum";
-            this.TxtSKUNum.Size = new System.Drawing.Size(241, 29);
+            this.TxtSKUNum.Size = new System.Drawing.Size(229, 29);
             this.TxtSKUNum.TabIndex = 0;
             this.TxtSKUNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSKUNum_KeyPress_1);
             this.TxtSKUNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSKUNum_KeyUp);
@@ -66,7 +71,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(109, 210);
+            this.label1.Location = new System.Drawing.Point(45, 218);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 3;
@@ -75,7 +80,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(294, 210);
+            this.label2.Location = new System.Drawing.Point(230, 218);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 4;
@@ -84,7 +89,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(485, 210);
+            this.label3.Location = new System.Drawing.Point(421, 218);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 20);
             this.label3.TabIndex = 5;
@@ -93,7 +98,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(97, 167);
+            this.label4.Location = new System.Drawing.Point(33, 175);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 20);
             this.label4.TabIndex = 6;
@@ -103,7 +108,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(281, 167);
+            this.label5.Location = new System.Drawing.Point(217, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 20);
             this.label5.TabIndex = 7;
@@ -113,7 +118,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(468, 167);
+            this.label6.Location = new System.Drawing.Point(404, 175);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 20);
             this.label6.TabIndex = 8;
@@ -121,30 +126,30 @@
             // 
             // TxtColor
             // 
-            this.TxtColor.Location = new System.Drawing.Point(101, 187);
+            this.TxtColor.Location = new System.Drawing.Point(37, 195);
             this.TxtColor.Name = "TxtColor";
             this.TxtColor.Size = new System.Drawing.Size(126, 20);
             this.TxtColor.TabIndex = 9;
             // 
             // TxtSize
             // 
-            this.TxtSize.Location = new System.Drawing.Point(285, 187);
+            this.TxtSize.Location = new System.Drawing.Point(221, 195);
             this.TxtSize.Name = "TxtSize";
             this.TxtSize.Size = new System.Drawing.Size(128, 20);
             this.TxtSize.TabIndex = 10;
             // 
             // TxtName
             // 
-            this.TxtName.Location = new System.Drawing.Point(472, 187);
+            this.TxtName.Location = new System.Drawing.Point(408, 195);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(135, 20);
             this.TxtName.TabIndex = 11;
             // 
             // BtnAddNewItem
             // 
-            this.BtnAddNewItem.Location = new System.Drawing.Point(460, 371);
+            this.BtnAddNewItem.Location = new System.Drawing.Point(256, 356);
             this.BtnAddNewItem.Name = "BtnAddNewItem";
-            this.BtnAddNewItem.Size = new System.Drawing.Size(241, 30);
+            this.BtnAddNewItem.Size = new System.Drawing.Size(50, 30);
             this.BtnAddNewItem.TabIndex = 12;
             this.BtnAddNewItem.Text = "Add New Item";
             this.BtnAddNewItem.UseVisualStyleBackColor = true;
@@ -158,14 +163,14 @@
             this.DGVExistingItems.GridColor = System.Drawing.Color.White;
             this.DGVExistingItems.Location = new System.Drawing.Point(12, 262);
             this.DGVExistingItems.Name = "DGVExistingItems";
-            this.DGVExistingItems.Size = new System.Drawing.Size(401, 251);
+            this.DGVExistingItems.Size = new System.Drawing.Size(453, 251);
             this.DGVExistingItems.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(444, 18);
+            this.label7.Location = new System.Drawing.Point(495, 18);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(166, 20);
             this.label7.TabIndex = 14;
@@ -173,9 +178,9 @@
             // 
             // BtnInsert
             // 
-            this.BtnInsert.Location = new System.Drawing.Point(448, 422);
+            this.BtnInsert.Location = new System.Drawing.Point(256, 392);
             this.BtnInsert.Name = "BtnInsert";
-            this.BtnInsert.Size = new System.Drawing.Size(241, 32);
+            this.BtnInsert.Size = new System.Drawing.Size(50, 32);
             this.BtnInsert.TabIndex = 1;
             this.BtnInsert.Text = "Insert";
             this.BtnInsert.UseVisualStyleBackColor = true;
@@ -184,7 +189,7 @@
             // PBAddNewItem
             // 
             this.PBAddNewItem.Image = global::BabatyeInventory.Properties.Resources.Add_icon;
-            this.PBAddNewItem.Location = new System.Drawing.Point(579, 76);
+            this.PBAddNewItem.Location = new System.Drawing.Point(549, 175);
             this.PBAddNewItem.Name = "PBAddNewItem";
             this.PBAddNewItem.Size = new System.Drawing.Size(66, 64);
             this.PBAddNewItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -196,7 +201,7 @@
             // PBInsert
             // 
             this.PBInsert.Image = global::BabatyeInventory.Properties.Resources.Floppy_Small_icon;
-            this.PBInsert.Location = new System.Drawing.Point(489, 76);
+            this.PBInsert.Location = new System.Drawing.Point(544, 76);
             this.PBInsert.Name = "PBInsert";
             this.PBInsert.Size = new System.Drawing.Size(66, 64);
             this.PBInsert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -213,18 +218,60 @@
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
+            // BtnReadFromExcel
+            // 
+            this.BtnReadFromExcel.Location = new System.Drawing.Point(512, 490);
+            this.BtnReadFromExcel.Name = "BtnReadFromExcel";
+            this.BtnReadFromExcel.Size = new System.Drawing.Size(75, 23);
+            this.BtnReadFromExcel.TabIndex = 18;
+            this.BtnReadFromExcel.Text = "Read";
+            this.BtnReadFromExcel.UseVisualStyleBackColor = true;
+            this.BtnReadFromExcel.Click += new System.EventHandler(this.BtnReadFromExcel_Click);
+            // 
+            // DGVExcel
+            // 
+            this.DGVExcel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.DGVExcel.BackgroundColor = System.Drawing.Color.White;
+            this.DGVExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVExcel.GridColor = System.Drawing.Color.White;
+            this.DGVExcel.Location = new System.Drawing.Point(512, 288);
+            this.DGVExcel.Name = "DGVExcel";
+            this.DGVExcel.Size = new System.Drawing.Size(191, 196);
+            this.DGVExcel.TabIndex = 19;
+            // 
+            // BtnLoad
+            // 
+            this.BtnLoad.Location = new System.Drawing.Point(604, 490);
+            this.BtnLoad.Name = "BtnLoad";
+            this.BtnLoad.Size = new System.Drawing.Size(75, 23);
+            this.BtnLoad.TabIndex = 20;
+            this.BtnLoad.Text = "Load";
+            this.BtnLoad.UseVisualStyleBackColor = true;
+            this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
+            // 
+            // LblFilePath
+            // 
+            this.LblFilePath.AutoSize = true;
+            this.LblFilePath.Location = new System.Drawing.Point(471, 262);
+            this.LblFilePath.Name = "LblFilePath";
+            this.LblFilePath.Size = new System.Drawing.Size(0, 13);
+            this.LblFilePath.TabIndex = 21;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(737, 525);
+            this.ClientSize = new System.Drawing.Size(719, 525);
+            this.Controls.Add(this.LblFilePath);
+            this.Controls.Add(this.BtnLoad);
+            this.Controls.Add(this.DGVExcel);
+            this.Controls.Add(this.BtnReadFromExcel);
+            this.Controls.Add(this.DGVExistingItems);
             this.Controls.Add(this.PBAddNewItem);
             this.Controls.Add(this.PBInsert);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.DGVExistingItems);
-            this.Controls.Add(this.BtnAddNewItem);
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.TxtSize);
             this.Controls.Add(this.TxtColor);
@@ -234,8 +281,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.BtnInsert);
             this.Controls.Add(this.TxtSKUNum);
+            this.Controls.Add(this.BtnAddNewItem);
+            this.Controls.Add(this.BtnInsert);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Main";
@@ -246,6 +294,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVExcel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +319,10 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox PBInsert;
         private System.Windows.Forms.PictureBox PBAddNewItem;
+        private System.Windows.Forms.Button BtnReadFromExcel;
+        private System.Windows.Forms.DataGridView DGVExcel;
+        private System.Windows.Forms.Button BtnLoad;
+        private System.Windows.Forms.Label LblFilePath;
     }
 }
 
