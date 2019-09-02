@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -11,6 +12,7 @@ namespace BabatyeInventory
     {
         readonly Cloth cloth = new Cloth();
         readonly DAL dal = new DAL();
+        private EventWaitHandle waitHandle = new AutoResetEvent(false);
 
         public Main()
         {
@@ -99,7 +101,6 @@ namespace BabatyeInventory
                 //set width to calculated by autosize
                 DGVExistingItems.Columns[i].Width = colw;
             }
-
         }
 
         public void HideTextBoxes()
@@ -158,6 +159,7 @@ namespace BabatyeInventory
                                 MessageBox.Show("New Item Added Successfully");
                                 LoadDGV();
                                 HideTextBoxes();
+                                waitHandle.Set();
                             }
                             else
                             {
@@ -235,8 +237,22 @@ namespace BabatyeInventory
             }
         }
 
-        private void BtnLoad_Click(object sender, EventArgs e)
+        public void ShowMyDialogBox()
         {
+            AddNewProduct testDialog = new AddNewProduct(this);
+
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            if (testDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                // Read the contents of testDialog's TextBox.
+                TxtName.Text = testDialog.TxtName.Text;
+
+            }
+            testDialog.Dispose();
+        }
+
+        private void BtnLoad_Click(object sender, EventArgs e)
+        {            
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
@@ -263,6 +279,18 @@ namespace BabatyeInventory
                         TxtSKUNum.Text = str;
                         cloth.SKUNumber = TxtSKUNum.Text.Trim();
                         int Result = dal.InsertCloth(cloth);
+                        if (Result == 0)
+                        {
+                            DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                                TxtColor.Text = cloth.ProductColor();
+                                TxtSize.Text = cloth.ProductSize();
+                                DisplayTextBoxes();
+                                ShowMyDialogBox();
+                            }
+                        }
                         TotalProducts += Result;
                         LoadDGV();
                     }

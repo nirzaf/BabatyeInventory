@@ -287,7 +287,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TxtSKUNum;
+        public System.Windows.Forms.TextBox TxtSKUNum;
         private System.Windows.Forms.Button BtnInsert;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -295,8 +295,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox TxtColor;
-        private System.Windows.Forms.TextBox TxtSize;
+        public System.Windows.Forms.TextBox TxtColor;
+        public System.Windows.Forms.TextBox TxtSize;
         private System.Windows.Forms.TextBox TxtName;
         private System.Windows.Forms.Button BtnAddNewItem;
         private System.Windows.Forms.DataGridView DGVExistingItems;

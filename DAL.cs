@@ -8,13 +8,12 @@ namespace BabatyeInventory
 {
     class DAL
     {
-        public SqlConnection Con = new SqlConnection("Data Source=.;Initial Catalog=babatye;Integrated Security=True");
-
+        DbConn C = new DbConn();
         public int InsertCloth(Cloth cloth)
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("InsertClothes", Con)
+                SqlCommand cmd = new SqlCommand("InsertClothes", C.Con)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -30,9 +29,9 @@ namespace BabatyeInventory
             }
             finally
             {
-                if (Con != null)
+                if (C.Con != null)
                 {
-                    Con.Close();
+                    C.Con.Close();
                 }
             }
         }
@@ -41,7 +40,7 @@ namespace BabatyeInventory
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("AddNewItem", Con)
+                SqlCommand cmd = new SqlCommand("AddNewItem", C.Con)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -60,9 +59,9 @@ namespace BabatyeInventory
             }
             finally
             {
-                if (Con != null)
+                if (C.Con != null)
                 {
-                    Con.Close();
+                    C.Con.Close();
                 }
             }
         }
@@ -72,7 +71,7 @@ namespace BabatyeInventory
             DataTable dt = new DataTable();
             try
             {
-                SqlCommand cmd = new SqlCommand("ViewProducts", Con)
+                SqlCommand cmd = new SqlCommand("ViewProducts", C.Con)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -87,9 +86,9 @@ namespace BabatyeInventory
             }
             finally
             {
-                if (Con != null)
+                if (C.Con != null)
                 {
-                    Con.Close();
+                    C.Con.Close();
                 }
             }
         }
@@ -102,7 +101,7 @@ namespace BabatyeInventory
                 {
                     DataSet NameOfProduct = new DataSet();
 
-                    SqlCommand cmd = new SqlCommand("GetName", Con)
+                    SqlCommand cmd = new SqlCommand("GetName", C.Con)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -123,9 +122,9 @@ namespace BabatyeInventory
                 }
                 finally
                 {
-                    if (Con != null)
+                    if (C.Con != null)
                     {
-                        Con.Close();
+                        C.Con.Close();
                     }
                 }
             }
