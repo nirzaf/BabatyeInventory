@@ -10,7 +10,7 @@ namespace BabatyeInventory
     class Cloth
     {
         public string SKUNumber { get; set; }
-        public string Name { get; set;}
+        public string Name { get; set; }
         public string Size { get; set; }
         public string Color { get; set; }
 
@@ -31,7 +31,7 @@ namespace BabatyeInventory
                     }
                     else
                     {
-                        return Color = "Null";
+                        return Color = "Invalid Colour";
                     }
                 }
                 else
@@ -46,10 +46,9 @@ namespace BabatyeInventory
                 throw;
             }
         }
-
         public string ProductSize()
         {
-           string SizeKey = SKUNumber.Substring(10, 2);
+            string SizeKey = SKUNumber.Substring(10, 2);
 
             if (SizeKey == "02")
             {
@@ -65,14 +64,15 @@ namespace BabatyeInventory
             }
             else
             {
-                return Size = "Null";
+                return Size = "Invalid Size";
             }
         }
 
         public string ProductName()
         {
-            Name = SKUNumber.Substring(0, 6);
+            string Name = SKUNumber.Substring(0, 6);
             return Name;
         }
     }
 }
+
