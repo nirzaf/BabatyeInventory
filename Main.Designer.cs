@@ -43,12 +43,13 @@
             this.DGVExistingItems = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.BtnInsert = new System.Windows.Forms.Button();
+            this.BtnLoad = new System.Windows.Forms.Button();
+            this.BtnReadFromExcel = new System.Windows.Forms.Button();
             this.PBAddNewItem = new System.Windows.Forms.PictureBox();
             this.PBInsert = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BtnReadFromExcel = new System.Windows.Forms.Button();
-            this.BtnLoad = new System.Windows.Forms.Button();
-            this.LblFilePath = new System.Windows.Forms.Label();
+            this.TxtFilterBySKU = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).BeginInit();
@@ -69,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(45, 218);
+            this.label1.Location = new System.Drawing.Point(40, 216);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 3;
@@ -78,7 +79,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(230, 218);
+            this.label2.Location = new System.Drawing.Point(224, 218);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 4;
@@ -87,7 +88,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(421, 218);
+            this.label3.Location = new System.Drawing.Point(395, 218);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 20);
             this.label3.TabIndex = 5;
@@ -101,6 +102,7 @@
             this.label4.Size = new System.Drawing.Size(118, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Product Color";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -116,7 +118,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(404, 175);
+            this.label6.Location = new System.Drawing.Point(387, 175);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 20);
             this.label6.TabIndex = 8;
@@ -128,6 +130,7 @@
             this.TxtColor.Name = "TxtColor";
             this.TxtColor.Size = new System.Drawing.Size(126, 20);
             this.TxtColor.TabIndex = 9;
+            this.TxtColor.TextChanged += new System.EventHandler(this.TxtColor_TextChanged);
             // 
             // TxtSize
             // 
@@ -138,7 +141,7 @@
             // 
             // TxtName
             // 
-            this.TxtName.Location = new System.Drawing.Point(408, 195);
+            this.TxtName.Location = new System.Drawing.Point(391, 195);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(135, 20);
             this.TxtName.TabIndex = 11;
@@ -159,9 +162,9 @@
             this.DGVExistingItems.BackgroundColor = System.Drawing.Color.White;
             this.DGVExistingItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVExistingItems.GridColor = System.Drawing.Color.White;
-            this.DGVExistingItems.Location = new System.Drawing.Point(12, 262);
+            this.DGVExistingItems.Location = new System.Drawing.Point(12, 285);
             this.DGVExistingItems.Name = "DGVExistingItems";
-            this.DGVExistingItems.Size = new System.Drawing.Size(294, 251);
+            this.DGVExistingItems.Size = new System.Drawing.Size(477, 228);
             this.DGVExistingItems.TabIndex = 13;
             // 
             // label7
@@ -184,10 +187,36 @@
             this.BtnInsert.UseVisualStyleBackColor = true;
             this.BtnInsert.Click += new System.EventHandler(this.BtnInsert_Click);
             // 
+            // BtnLoad
+            // 
+            this.BtnLoad.BackgroundImage = global::BabatyeInventory.Properties.Resources.white;
+            this.BtnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLoad.Location = new System.Drawing.Point(495, 373);
+            this.BtnLoad.Name = "BtnLoad";
+            this.BtnLoad.Size = new System.Drawing.Size(194, 68);
+            this.BtnLoad.TabIndex = 20;
+            this.BtnLoad.Text = "Start Loading";
+            this.BtnLoad.UseVisualStyleBackColor = true;
+            this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
+            // 
+            // BtnReadFromExcel
+            // 
+            this.BtnReadFromExcel.BackgroundImage = global::BabatyeInventory.Properties.Resources.white;
+            this.BtnReadFromExcel.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BtnReadFromExcel.FlatAppearance.BorderSize = 0;
+            this.BtnReadFromExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnReadFromExcel.Location = new System.Drawing.Point(495, 445);
+            this.BtnReadFromExcel.Name = "BtnReadFromExcel";
+            this.BtnReadFromExcel.Size = new System.Drawing.Size(194, 68);
+            this.BtnReadFromExcel.TabIndex = 18;
+            this.BtnReadFromExcel.Text = "Load From Excel File";
+            this.BtnReadFromExcel.UseVisualStyleBackColor = true;
+            this.BtnReadFromExcel.Click += new System.EventHandler(this.BtnReadFromExcel_Click);
+            // 
             // PBAddNewItem
             // 
             this.PBAddNewItem.Image = global::BabatyeInventory.Properties.Resources.Add_icon;
-            this.PBAddNewItem.Location = new System.Drawing.Point(549, 175);
+            this.PBAddNewItem.Location = new System.Drawing.Point(544, 175);
             this.PBAddNewItem.Name = "PBAddNewItem";
             this.PBAddNewItem.Size = new System.Drawing.Size(66, 64);
             this.PBAddNewItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -216,41 +245,32 @@
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
-            // BtnReadFromExcel
+            // TxtFilterBySKU
             // 
-            this.BtnReadFromExcel.Location = new System.Drawing.Point(512, 490);
-            this.BtnReadFromExcel.Name = "BtnReadFromExcel";
-            this.BtnReadFromExcel.Size = new System.Drawing.Size(75, 23);
-            this.BtnReadFromExcel.TabIndex = 18;
-            this.BtnReadFromExcel.Text = "Open";
-            this.BtnReadFromExcel.UseVisualStyleBackColor = true;
-            this.BtnReadFromExcel.Click += new System.EventHandler(this.BtnReadFromExcel_Click);
+            this.TxtFilterBySKU.Location = new System.Drawing.Point(112, 259);
+            this.TxtFilterBySKU.Name = "TxtFilterBySKU";
+            this.TxtFilterBySKU.Size = new System.Drawing.Size(151, 20);
+            this.TxtFilterBySKU.TabIndex = 21;
+            this.TxtFilterBySKU.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilterBySKU_KeyUp);
             // 
-            // BtnLoad
+            // label8
             // 
-            this.BtnLoad.Location = new System.Drawing.Point(604, 490);
-            this.BtnLoad.Name = "BtnLoad";
-            this.BtnLoad.Size = new System.Drawing.Size(75, 23);
-            this.BtnLoad.TabIndex = 20;
-            this.BtnLoad.Text = "Load";
-            this.BtnLoad.UseVisualStyleBackColor = true;
-            this.BtnLoad.Click += new System.EventHandler(this.BtnLoad_Click);
-            // 
-            // LblFilePath
-            // 
-            this.LblFilePath.AutoSize = true;
-            this.LblFilePath.Location = new System.Drawing.Point(324, 434);
-            this.LblFilePath.Name = "LblFilePath";
-            this.LblFilePath.Size = new System.Drawing.Size(0, 13);
-            this.LblFilePath.TabIndex = 21;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 257);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(94, 20);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Filter Data";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(719, 525);
-            this.Controls.Add(this.LblFilePath);
+            this.ClientSize = new System.Drawing.Size(696, 524);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.TxtFilterBySKU);
             this.Controls.Add(this.BtnLoad);
             this.Controls.Add(this.BtnReadFromExcel);
             this.Controls.Add(this.DGVExistingItems);
@@ -306,7 +326,8 @@
         private System.Windows.Forms.PictureBox PBAddNewItem;
         private System.Windows.Forms.Button BtnReadFromExcel;
         private System.Windows.Forms.Button BtnLoad;
-        private System.Windows.Forms.Label LblFilePath;
+        public System.Windows.Forms.TextBox TxtFilterBySKU;
+        private System.Windows.Forms.Label label8;
     }
 }
 

@@ -236,7 +236,6 @@ namespace BabatyeInventory
             OpenFileDialog Ofd = new OpenFileDialog();
             if (Ofd.ShowDialog() == DialogResult.OK)
             {
-                LblFilePath.Text = Ofd.FileName;
                 filePath = Ofd.FileName;
             }
         }
@@ -267,9 +266,9 @@ namespace BabatyeInventory
             int rw = 0;
             int cl = 0;
             xlApp = new Excel.Application();
-            if (LblFilePath.Text != "")
+            if (filePath != "")
             {
-                xlWorkBook = xlApp.Workbooks.Open(LblFilePath.Text, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 range = xlWorkSheet.UsedRange;
                 rw = range.Rows.Count;
@@ -316,6 +315,30 @@ namespace BabatyeInventory
                 MessageBox.Show("File Name Not Selected");
             }
         }
-        
+
+        private void TxtColor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtFilterBySKU_KeyUp(object sender, KeyEventArgs e)
+        {
+            (DGVExistingItems.DataSource as DataTable).DefaultView.RowFilter = string.Format("SKU LIKE '{0}%' OR SKU LIKE '% {0}%' OR NAME LIKE '{0}%' OR NAME LIKE '% {0}%' OR Size LIKE '{0}%' OR Size LIKE '% {0}%' OR Color LIKE '{0}%' OR Color LIKE '% {0}%' ", TxtFilterBySKU.Text);
+        }
+
+        private void TxtFilterByName_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void TxtFilterBySize_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
