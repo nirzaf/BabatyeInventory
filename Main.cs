@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Data;
 using System.Data.OleDb;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -10,6 +12,8 @@ namespace BabatyeInventory
 {
     public partial class Main : Form
     {
+
+
         readonly Cloth cloth = new Cloth();
         readonly DAL dal = new DAL();
         private EventWaitHandle waitHandle = new AutoResetEvent(false);
@@ -22,6 +26,11 @@ namespace BabatyeInventory
         private void BtnInsert_Click(object sender, EventArgs e)
         {
             InsertProduct();
+        }
+
+        public void DeleteFile(string file, UIOption showUI, RecycleOption recycle, UICancelOption onUserCancel)
+        {
+
         }
 
         public void InsertProduct()
@@ -295,13 +304,20 @@ namespace BabatyeInventory
                         LoadDGV();
                     }
                 }
-                MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully ");
+
+                string filePath = LblFilePath.Text;
+                string fileName = Path.GetFileName(filePath);
+
+                MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully" );
+                
                 LoadDGV();
                 xlWorkBook.Close(true, null, null);
                 xlApp.Quit();
                 Marshal.ReleaseComObject(xlWorkSheet);
                 Marshal.ReleaseComObject(xlWorkBook);
                 Marshal.ReleaseComObject(xlApp);
+
+                DeleteFile(LblFilePath.Text, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently, UICancelOption.ThrowException);
             }
             else
             {

@@ -161,7 +161,7 @@
             this.DGVExistingItems.GridColor = System.Drawing.Color.White;
             this.DGVExistingItems.Location = new System.Drawing.Point(12, 262);
             this.DGVExistingItems.Name = "DGVExistingItems";
-            this.DGVExistingItems.Size = new System.Drawing.Size(453, 251);
+            this.DGVExistingItems.Size = new System.Drawing.Size(294, 251);
             this.DGVExistingItems.TabIndex = 13;
             // 
             // label7
@@ -239,7 +239,7 @@
             // LblFilePath
             // 
             this.LblFilePath.AutoSize = true;
-            this.LblFilePath.Location = new System.Drawing.Point(471, 433);
+            this.LblFilePath.Location = new System.Drawing.Point(324, 434);
             this.LblFilePath.Name = "LblFilePath";
             this.LblFilePath.Size = new System.Drawing.Size(0, 13);
             this.LblFilePath.TabIndex = 21;
