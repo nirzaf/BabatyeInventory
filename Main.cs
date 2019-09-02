@@ -16,7 +16,7 @@ namespace BabatyeInventory
 
         readonly Cloth cloth = new Cloth();
         readonly DAL dal = new DAL();
-        private EventWaitHandle waitHandle = new AutoResetEvent(false);
+        public string filePath = "";
 
         public Main()
         {
@@ -26,11 +26,6 @@ namespace BabatyeInventory
         private void BtnInsert_Click(object sender, EventArgs e)
         {
             InsertProduct();
-        }
-
-        public void DeleteFile(string file, UIOption showUI, RecycleOption recycle, UICancelOption onUserCancel)
-        {
-
         }
 
         public void InsertProduct()
@@ -168,7 +163,6 @@ namespace BabatyeInventory
                                 MessageBox.Show("New Item Added Successfully");
                                 LoadDGV();
                                 HideTextBoxes();
-                                waitHandle.Set();
                             }
                             else
                             {
@@ -243,6 +237,7 @@ namespace BabatyeInventory
             if (Ofd.ShowDialog() == DialogResult.OK)
             {
                 LblFilePath.Text = Ofd.FileName;
+                filePath = Ofd.FileName;
             }
         }
 
@@ -305,24 +300,22 @@ namespace BabatyeInventory
                     }
                 }
 
-                string filePath = LblFilePath.Text;
-                string fileName = Path.GetFileName(filePath);
-
-                MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully" );
-                
+                //MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully" );
                 LoadDGV();
                 xlWorkBook.Close(true, null, null);
                 xlApp.Quit();
                 Marshal.ReleaseComObject(xlWorkSheet);
                 Marshal.ReleaseComObject(xlWorkBook);
                 Marshal.ReleaseComObject(xlApp);
-
-                DeleteFile(LblFilePath.Text, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently, UICancelOption.ThrowException);
+                DialogResult dr = MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully!, would you like to delete excel source file?", "Confirmation to remove the source file!", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                    FileSystem.DeleteFile(filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
             }
             else
             {
                 MessageBox.Show("File Name Not Selected");
             }
         }
+        
     }
 }
