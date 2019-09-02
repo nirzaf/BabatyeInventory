@@ -106,5 +106,10 @@ namespace BabatyeInventory
                 return;
             }
         }
+
+        private void TxtSize_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
