@@ -8,7 +8,7 @@ namespace BabatyeInventory
 {
     class DAL
     {
-        public SqlConnection Con = new SqlConnection("Data Source=.\\SQLEXPRESS01 ;Initial Catalog=babatye;Integrated Security=True");
+        public SqlConnection Con = new SqlConnection("Data Source=.;Initial Catalog=babatye;Integrated Security=True");
 
         public int InsertCloth(Cloth cloth)
         {

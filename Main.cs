@@ -110,6 +110,7 @@ namespace BabatyeInventory
             BtnAddNewItem.Visible = false;
             BtnAddNewItem.Enabled = false;
             BtnInsert.Enabled = true;
+            PBInsert.Visible = true;
             PBAddNewItem.Visible = false;
         }
 
@@ -253,7 +254,7 @@ namespace BabatyeInventory
                 range = xlWorkSheet.UsedRange;
                 rw = range.Rows.Count;
                 cl = range.Columns.Count;
-                int TotalProducts = 1;
+                int TotalProducts = 0;
                 for (rCnt = 1; rCnt <= rw; rCnt++)
                 {
                     for (cCnt = 1; cCnt <= cl; cCnt++)
