@@ -84,6 +84,7 @@ namespace BabatyeInventory
         {
             HideTextBoxes();
             LoadDGV();
+            BtnLoad.Enabled = false;
         }
 
         public void LoadDGV()
@@ -91,9 +92,11 @@ namespace BabatyeInventory
             DGVExistingItems.DataSource = dal.LoadDGV();
 
             //set autosize mode
-            DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            //DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             //datagrid has calculated it's widths so we can store them
             for (int i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
@@ -237,6 +240,7 @@ namespace BabatyeInventory
             if (Ofd.ShowDialog() == DialogResult.OK)
             {
                 filePath = Ofd.FileName;
+                BtnLoad.Enabled = true;
             }
         }
 
@@ -270,36 +274,38 @@ namespace BabatyeInventory
             {
                 xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                range = xlWorkSheet.UsedRange;
+                range = xlWorkSheet.UsedRange.Columns[1];
                 rw = range.Rows.Count;
-                cl = range.Columns.Count;
+                cl = 1;
                 int TotalProducts = 0;
-                for (rCnt = 1; rCnt <= rw; rCnt++)
+                for (rCnt = 2; rCnt <= rw; rCnt++)
                 {
                     for (cCnt = 1; cCnt <= cl; cCnt++)
                     {
                         str = (string)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
-                        TxtSKUNum.Text = str;
-                        cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                        int Result = dal.InsertCloth(cloth);
-                        if (Result == 0)
+                        if (!string.IsNullOrEmpty(str))
                         {
-                            DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
-                            if (dialogResult == DialogResult.Yes)
+                            TxtSKUNum.Text = str;
+                            cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                            int Result = dal.InsertCloth(cloth);
+                            if (Result == 0)
                             {
-                                cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                                TxtColor.Text = cloth.ProductColor();
-                                TxtSize.Text = cloth.ProductSize();
-                                DisplayTextBoxes();
-                                ShowMyDialogBox();
+                                DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                                    TxtColor.Text = cloth.ProductColor();
+                                    TxtSize.Text = cloth.ProductSize();
+                                    DisplayTextBoxes();
+                                    ShowMyDialogBox();
+                                }
                             }
+                            TotalProducts += Result;
+                            LoadDGV();
                         }
-                        TotalProducts += Result;
-                        LoadDGV();
                     }
                 }
 
-                //MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully" );
                 LoadDGV();
                 xlWorkBook.Close(true, null, null);
                 xlApp.Quit();
@@ -309,6 +315,7 @@ namespace BabatyeInventory
                 DialogResult dr = MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully!, would you like to delete excel source file?", "Confirmation to remove the source file!", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                     FileSystem.DeleteFile(filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
+                BtnLoad.Enabled = false;
             }
             else
             {

@@ -158,12 +158,19 @@
             // 
             // DGVExistingItems
             // 
-            this.DGVExistingItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.DGVExistingItems.AllowUserToAddRows = false;
+            this.DGVExistingItems.AllowUserToDeleteRows = false;
+            this.DGVExistingItems.AllowUserToResizeRows = false;
+            this.DGVExistingItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVExistingItems.BackgroundColor = System.Drawing.Color.White;
+            this.DGVExistingItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DGVExistingItems.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
             this.DGVExistingItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVExistingItems.GridColor = System.Drawing.Color.White;
             this.DGVExistingItems.Location = new System.Drawing.Point(12, 285);
             this.DGVExistingItems.Name = "DGVExistingItems";
+            this.DGVExistingItems.ReadOnly = true;
+            this.DGVExistingItems.RowHeadersWidth = 50;
             this.DGVExistingItems.Size = new System.Drawing.Size(477, 228);
             this.DGVExistingItems.TabIndex = 13;
             // 
