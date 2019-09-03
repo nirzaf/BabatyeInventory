@@ -2,8 +2,10 @@
 using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -12,11 +14,11 @@ namespace BabatyeInventory
 {
     public partial class Main : Form
     {
-
-
         readonly Cloth cloth = new Cloth();
         readonly DAL dal = new DAL();
         public string filePath = "";
+        public int TotalRows = 0;
+        public int Count = 0;
 
         public Main()
         {
@@ -85,6 +87,7 @@ namespace BabatyeInventory
             HideTextBoxes();
             LoadDGV();
             BtnLoad.Enabled = false;
+            LblMessage.Text = "";
         }
 
         public void LoadDGV()
@@ -92,11 +95,14 @@ namespace BabatyeInventory
             DGVExistingItems.DataSource = dal.LoadDGV();
 
             //set autosize mode
-            //DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+             DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            for(int i=0;i<DGVExistingItems.Columns.Count;i=i+2)
+             DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
 
-            //DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+           // DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             //datagrid has calculated it's widths so we can store them
             for (int i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
@@ -205,14 +211,6 @@ namespace BabatyeInventory
             }
         }
 
-        private void TxtSKUNum_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 13)
-            {
-                InsertProduct();
-            }
-        }
-
         private void TxtSKUNum_KeyUp(object sender, KeyEventArgs e)
         {
             if (!string.IsNullOrEmpty(TxtSKUNum.Text))
@@ -234,13 +232,73 @@ namespace BabatyeInventory
             AddNewItem();
         }
 
+        void OpenKeywordsFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            OpenFileDialog fileDialog = sender as OpenFileDialog;
+            string selectedFile = fileDialog.FileName;
+            if (string.IsNullOrEmpty(selectedFile) || selectedFile.Contains(".lnk"))
+            {
+                MessageBox.Show("Please select a valid Excel File");
+                e.Cancel = true;
+            }
+            return;
+        }
+
         private void BtnReadFromExcel_Click(object sender, EventArgs e)
         {
-            OpenFileDialog Ofd = new OpenFileDialog();
+            OpenFileDialog Ofd = new OpenFileDialog
+            {
+                Multiselect = false,
+                ValidateNames = true,
+                DereferenceLinks = false, // Will return .lnk in shortcuts.
+                //Filter = @" Excel Files(.xls)|*.xls| Excel Files(.xlsx) | *.xlsx | Excel Files(*.xlsm) | *.xlsm | CSV Files(*.csv) | *.csv"
+            };
+            Ofd.FileOk += new System.ComponentModel.CancelEventHandler(OpenKeywordsFileDialog_FileOk);
             if (Ofd.ShowDialog() == DialogResult.OK)
             {
-                filePath = Ofd.FileName;
+                filePath = Ofd.FileName;                
                 BtnLoad.Enabled = true;
+            }
+            LblMessage.Text = "Importing excel file...";
+            timer2.Enabled = true;
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            Excel.Range range;
+            int rCnt;
+            int cCnt;
+            int rw = 0;
+            int cl = 0;
+            xlApp = new Excel.Application();
+            if (filePath != "")
+            {
+                int totalRows = 0;
+                xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                totalRows = xlWorkSheet.UsedRange.Rows.Count;
+                PBLoading.Visible = true;
+                PBLoading.Maximum = totalRows; // your loop max no.
+                PBLoading.Minimum = 0;
+                range = xlWorkSheet.UsedRange.Columns[1];
+                rw = range.Rows.Count;
+                cl = 1;
+                for (rCnt = 2; rCnt <= rw; rCnt++)
+                {
+                    for (cCnt = 1; cCnt <= cl; cCnt++)
+                    {
+                        TotalRows++;
+                        PBLoading.Value = TotalRows;
+                    }  
+                }
+                LoadDGV();
+                xlWorkBook.Close(true, null, null);
+                xlApp.Quit();
+                LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
+                timer1.Enabled = true;
+                timer2.Enabled = false;
+                Marshal.ReleaseComObject(xlWorkSheet);
+                Marshal.ReleaseComObject(xlWorkBook);
+                Marshal.ReleaseComObject(xlApp);
             }
         }
 
@@ -259,7 +317,8 @@ namespace BabatyeInventory
         }
 
         private void BtnLoad_Click(object sender, EventArgs e)
-        {            
+        {
+            PanelAddedItems.Visible = true;
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
@@ -301,6 +360,7 @@ namespace BabatyeInventory
                                 }
                             }
                             TotalProducts += Result;
+                            LblAddedItems.Text = TotalProducts.ToString();
                             LoadDGV();
                         }
                     }
@@ -316,6 +376,7 @@ namespace BabatyeInventory
                 if (dr == DialogResult.Yes)
                     FileSystem.DeleteFile(filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
                 BtnLoad.Enabled = false;
+                PanelAddedItems.Visible = false;
             }
             else
             {
@@ -323,29 +384,23 @@ namespace BabatyeInventory
             }
         }
 
-        private void TxtColor_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TxtFilterBySKU_KeyUp(object sender, KeyEventArgs e)
         {
             (DGVExistingItems.DataSource as DataTable).DefaultView.RowFilter = string.Format("SKU LIKE '{0}%' OR SKU LIKE '% {0}%' OR NAME LIKE '{0}%' OR NAME LIKE '% {0}%' OR Size LIKE '{0}%' OR Size LIKE '% {0}%' OR Color LIKE '{0}%' OR Color LIKE '% {0}%' ", TxtFilterBySKU.Text);
         }
 
-        private void TxtFilterByName_KeyUp(object sender, KeyEventArgs e)
+        private void TxtName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            if (e.KeyChar == 13)
+            {
+                AddNewItem();
+            }
         }
 
-        private void TxtFilterBySize_KeyUp(object sender, KeyEventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            LblMessage.Text = "";
+            PBLoading.Visible = false;
         }
     }
 }
