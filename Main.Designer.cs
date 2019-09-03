@@ -57,6 +57,7 @@
             this.PBAddNewItem = new System.Windows.Forms.PictureBox();
             this.PBInsert = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).BeginInit();
             this.PanelAddedItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -260,13 +261,13 @@
             this.LblMessage.ForeColor = System.Drawing.Color.Red;
             this.LblMessage.Location = new System.Drawing.Point(242, 239);
             this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(315, 40);
+            this.LblMessage.Size = new System.Drawing.Size(398, 40);
             this.LblMessage.TabIndex = 27;
             this.LblMessage.Text = "Message";
             // 
             // timer1
             // 
-            this.timer1.Interval = 5000;
+            this.timer1.Interval = 6000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pictureBox2
@@ -335,6 +336,11 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 500;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Main
             // 
@@ -413,6 +419,7 @@
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 

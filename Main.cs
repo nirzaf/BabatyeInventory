@@ -18,7 +18,7 @@ namespace BabatyeInventory
         readonly DAL dal = new DAL();
         public string filePath = "";
         public int TotalRows = 0;
-        public int Count = 0;
+        public int Count = 100;
 
         public Main()
         {
@@ -260,6 +260,8 @@ namespace BabatyeInventory
                 BtnLoad.Enabled = true;
             }
             LblMessage.Text = "Importing excel file...";
+            timer2.Enabled = true;
+            timer2.Start();
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
@@ -400,6 +402,21 @@ namespace BabatyeInventory
         {
             LblMessage.Text = "";
             PBLoading.Visible = false;
+            LblMessage.ForeColor = Color.Red;
+            timer2.Enabled = false ;
+            timer2.Stop();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (LblMessage.Text == "")
+            {
+                LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
+            }
+            else
+            {
+                LblMessage.Text = "";
+            }
         }
     }
 }
