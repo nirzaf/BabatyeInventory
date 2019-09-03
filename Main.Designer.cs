@@ -184,6 +184,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(398, 18);
             this.label7.Name = "label7";
@@ -241,10 +242,12 @@
             // 
             // PBLoading
             // 
+            this.PBLoading.BackColor = System.Drawing.Color.White;
+            this.PBLoading.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.PBLoading.ForeColor = System.Drawing.Color.Lime;
             this.PBLoading.Location = new System.Drawing.Point(-8, -9);
             this.PBLoading.Name = "PBLoading";
-            this.PBLoading.Size = new System.Drawing.Size(715, 24);
+            this.PBLoading.Size = new System.Drawing.Size(741, 24);
             this.PBLoading.Step = 1;
             this.PBLoading.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.PBLoading.TabIndex = 26;
@@ -253,11 +256,11 @@
             // LblMessage
             // 
             this.LblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.LblMessage.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMessage.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblMessage.ForeColor = System.Drawing.Color.Red;
-            this.LblMessage.Location = new System.Drawing.Point(274, 255);
+            this.LblMessage.Location = new System.Drawing.Point(242, 239);
             this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(315, 25);
+            this.LblMessage.Size = new System.Drawing.Size(315, 40);
             this.LblMessage.TabIndex = 27;
             this.LblMessage.Text = "Message";
             // 
@@ -268,6 +271,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Image = global::BabatyeInventory.Properties.Resources.Search;
             this.pictureBox2.Location = new System.Drawing.Point(12, 221);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(58, 61);
@@ -341,7 +345,6 @@
             this.Controls.Add(this.TxtFilterBySKU);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.LblMessage);
-            this.Controls.Add(this.PBLoading);
             this.Controls.Add(this.PanelAddedItems);
             this.Controls.Add(this.BtnLoad);
             this.Controls.Add(this.BtnReadFromExcel);
@@ -362,6 +365,7 @@
             this.Controls.Add(this.TxtSKUNum);
             this.Controls.Add(this.BtnAddNewItem);
             this.Controls.Add(this.BtnInsert);
+            this.Controls.Add(this.PBLoading);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Main";

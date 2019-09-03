@@ -292,8 +292,9 @@ namespace BabatyeInventory
                 LoadDGV();
                 xlWorkBook.Close(true, null, null);
                 xlApp.Quit();
-                LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
                 timer1.Enabled = true;
+                LblMessage.ForeColor = Color.Green;
+                LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
                 Marshal.ReleaseComObject(xlWorkSheet);
                 Marshal.ReleaseComObject(xlWorkBook);
                 Marshal.ReleaseComObject(xlApp);
