@@ -400,8 +400,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        public System.Windows.Forms.TextBox TxtColor;
-        public System.Windows.Forms.TextBox TxtSize;
         private System.Windows.Forms.TextBox TxtName;
         private System.Windows.Forms.Button BtnAddNewItem;
         private System.Windows.Forms.DataGridView DGVExistingItems;
@@ -420,6 +418,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Timer timer2;
+        public System.Windows.Forms.TextBox TxtColor;
+        public System.Windows.Forms.TextBox TxtSize;
     }
 }
 

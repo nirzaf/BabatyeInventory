@@ -180,26 +180,26 @@ namespace BabatyeInventory
                         }
                         else
                         {
-                            MessageBox.Show("Size cannot be empty");
-                            return;
+                            MessageBox.Show("Product Name cannot be empty");
+                            TxtName.Focus();
                         }
                     }
                     else
                     {
                         MessageBox.Show("Size cannot be empty");
-                        return;
+                        TxtSize.Focus();
                     }
                 }
                 else
                 {
                     MessageBox.Show("Color cannot be empty");
-                    return;
+                    TxtColor.Focus();
                 }
             }
             else
             {
                 MessageBox.Show("SKU Number cannot be empty");
-                return;
+                TxtSKUNum.Focus();
             }
         }
 

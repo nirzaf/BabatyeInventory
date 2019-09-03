@@ -8,7 +8,7 @@ namespace BabatyeInventory
 
         public Main main;
         public string SKUNumber = "";
-        readonly Cloth cl = new Cloth();
+        readonly Cloth cloth = new Cloth();
         DAL dal = new DAL();
 
         public AddNewProduct(Main main)
@@ -25,14 +25,16 @@ namespace BabatyeInventory
         public void DisplayTextBoxes()
         {
             SKUNumber = main.TxtSKUNum.Text;
-            TxtColor.Text = main.TxtColor.Text;
-            TxtSize.Text = main.TxtSize.Text;
-
-            if (TxtColor.Text.Trim() != "")
+            if (!string.IsNullOrEmpty(main.TxtColor.Text))
+            {
+                TxtColor.Text = main.TxtColor.Text;
                 TxtColor.Enabled = false;
-
-            if (TxtSize.Text.Trim() != "")
+            }
+            if (!string.IsNullOrEmpty(main.TxtSize.Text))
+            {
+                TxtSize.Text = main.TxtSize.Text;
                 TxtSize.Enabled = false;
+            }                
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,21 +56,22 @@ namespace BabatyeInventory
 
             if (!string.IsNullOrEmpty(SKUNumber))
             {
-                cl.SKUNumber = SKUNumber;
+                cloth.SKUNumber = SKUNumber;
                 if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
                 {
-                    cl.Color = TxtColor.Text.Trim();
+                    cloth.Color = TxtColor.Text.Trim();
                     if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
                     {
-                        cl.Size = TxtSize.Text.Trim();
+                        cloth.Size = TxtSize.Text.Trim();
                         if (!string.IsNullOrEmpty(TxtName.Text.Trim()))
                         {
-                            cl.Name = TxtName.Text.Trim();
-                            int Result = dal.AddNewCloth(cl);
+                            cloth.Name = TxtName.Text.Trim();
+                            int Result = dal.AddNewCloth(cloth);
                             if (Result > 0)
                             {
                                 MessageBox.Show("New Item Added Successfully");
                                 main.LoadDGV();
+                                main.HideTextBoxes();
                             }
                             else
                             {
@@ -77,26 +80,25 @@ namespace BabatyeInventory
                         }
                         else
                         {
-                            MessageBox.Show("Size cannot be empty");
-                            return;
+                            MessageBox.Show("Product Name cannot be empty");
+                            TxtName.Focus();
                         }
                     }
                     else
                     {
                         MessageBox.Show("Size cannot be empty");
-                        return;
+                        TxtSize.Focus();
                     }
                 }
                 else
                 {
                     MessageBox.Show("Color cannot be empty");
-                    return;
+                    TxtColor.Focus();
                 }
             }
             else
             {
                 MessageBox.Show("SKU Number cannot be empty");
-                return;
             }
         }
 
