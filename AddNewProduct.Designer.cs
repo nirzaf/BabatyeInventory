@@ -42,16 +42,16 @@
             // 
             this.TxtColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtColor.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TxtColor.Location = new System.Drawing.Point(51, 59);
+            this.TxtColor.Location = new System.Drawing.Point(13, 34);
             this.TxtColor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtColor.Name = "TxtColor";
-            this.TxtColor.Size = new System.Drawing.Size(162, 26);
+            this.TxtColor.Size = new System.Drawing.Size(230, 26);
             this.TxtColor.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 34);
+            this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 20);
@@ -61,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 119);
+            this.label2.Location = new System.Drawing.Point(8, 67);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 20);
@@ -72,17 +72,16 @@
             // 
             this.TxtSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtSize.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TxtSize.Location = new System.Drawing.Point(51, 144);
+            this.TxtSize.Location = new System.Drawing.Point(13, 92);
             this.TxtSize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtSize.Name = "TxtSize";
-            this.TxtSize.Size = new System.Drawing.Size(162, 26);
+            this.TxtSize.Size = new System.Drawing.Size(230, 26);
             this.TxtSize.TabIndex = 2;
-            this.TxtSize.TextChanged += new System.EventHandler(this.TxtSize_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 211);
+            this.label3.Location = new System.Drawing.Point(8, 124);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 20);
@@ -93,20 +92,21 @@
             // 
             this.TxtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtName.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TxtName.Location = new System.Drawing.Point(51, 236);
+            this.TxtName.Location = new System.Drawing.Point(13, 149);
             this.TxtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(162, 26);
+            this.TxtName.Size = new System.Drawing.Size(230, 26);
             this.TxtName.TabIndex = 4;
+            this.TxtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtName_KeyPress);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(49, 292);
+            this.button1.Location = new System.Drawing.Point(11, 198);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(164, 58);
+            this.button1.Size = new System.Drawing.Size(232, 58);
             this.button1.TabIndex = 7;
             this.button1.Text = "Add New Item";
             this.button1.UseVisualStyleBackColor = false;
@@ -114,11 +114,12 @@
             // 
             // AddNewProduct
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(256, 381);
+            this.ClientSize = new System.Drawing.Size(256, 269);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TxtName);

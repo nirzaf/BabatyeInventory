@@ -260,7 +260,6 @@ namespace BabatyeInventory
                 BtnLoad.Enabled = true;
             }
             LblMessage.Text = "Importing excel file...";
-            timer2.Enabled = true;
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
@@ -295,7 +294,6 @@ namespace BabatyeInventory
                 xlApp.Quit();
                 LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
                 timer1.Enabled = true;
-                timer2.Enabled = false;
                 Marshal.ReleaseComObject(xlWorkSheet);
                 Marshal.ReleaseComObject(xlWorkBook);
                 Marshal.ReleaseComObject(xlApp);

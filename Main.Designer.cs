@@ -45,13 +45,13 @@
             this.label7 = new System.Windows.Forms.Label();
             this.BtnInsert = new System.Windows.Forms.Button();
             this.TxtFilterBySKU = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.LblAddedItems = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.PanelAddedItems = new System.Windows.Forms.Panel();
             this.PBLoading = new System.Windows.Forms.ProgressBar();
             this.LblMessage = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.BtnLoad = new System.Windows.Forms.Button();
             this.BtnReadFromExcel = new System.Windows.Forms.Button();
             this.PBAddNewItem = new System.Windows.Forms.PictureBox();
@@ -59,6 +59,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).BeginInit();
             this.PanelAddedItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,9 +68,9 @@
             // TxtSKUNum
             // 
             this.TxtSKUNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSKUNum.Location = new System.Drawing.Point(460, 41);
+            this.TxtSKUNum.Location = new System.Drawing.Point(399, 41);
             this.TxtSKUNum.Name = "TxtSKUNum";
-            this.TxtSKUNum.Size = new System.Drawing.Size(229, 29);
+            this.TxtSKUNum.Size = new System.Drawing.Size(290, 29);
             this.TxtSKUNum.TabIndex = 0;
             this.TxtSKUNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSKUNum_KeyUp);
             // 
@@ -77,7 +78,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 216);
+            this.label1.Location = new System.Drawing.Point(16, 193);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 3;
@@ -86,7 +87,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(224, 218);
+            this.label2.Location = new System.Drawing.Point(171, 194);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 4;
@@ -95,7 +96,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(395, 218);
+            this.label3.Location = new System.Drawing.Point(320, 194);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 20);
             this.label3.TabIndex = 5;
@@ -104,7 +105,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(33, 175);
+            this.label4.Location = new System.Drawing.Point(9, 152);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(118, 20);
             this.label4.TabIndex = 6;
@@ -114,7 +115,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(217, 175);
+            this.label5.Location = new System.Drawing.Point(164, 151);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 20);
             this.label5.TabIndex = 7;
@@ -124,7 +125,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(387, 175);
+            this.label6.Location = new System.Drawing.Point(312, 151);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(122, 20);
             this.label6.TabIndex = 8;
@@ -132,21 +133,21 @@
             // 
             // TxtColor
             // 
-            this.TxtColor.Location = new System.Drawing.Point(37, 195);
+            this.TxtColor.Location = new System.Drawing.Point(13, 172);
             this.TxtColor.Name = "TxtColor";
             this.TxtColor.Size = new System.Drawing.Size(126, 20);
             this.TxtColor.TabIndex = 9;
             // 
             // TxtSize
             // 
-            this.TxtSize.Location = new System.Drawing.Point(221, 195);
+            this.TxtSize.Location = new System.Drawing.Point(168, 171);
             this.TxtSize.Name = "TxtSize";
-            this.TxtSize.Size = new System.Drawing.Size(128, 20);
+            this.TxtSize.Size = new System.Drawing.Size(126, 20);
             this.TxtSize.TabIndex = 10;
             // 
             // TxtName
             // 
-            this.TxtName.Location = new System.Drawing.Point(391, 195);
+            this.TxtName.Location = new System.Drawing.Point(316, 171);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(135, 20);
             this.TxtName.TabIndex = 11;
@@ -184,11 +185,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(456, 18);
+            this.label7.Location = new System.Drawing.Point(398, 18);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(166, 20);
+            this.label7.Size = new System.Drawing.Size(197, 20);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Enter SKU Number ";
+            this.label7.Text = "Enter the SKU Number ";
             // 
             // BtnInsert
             // 
@@ -202,21 +203,11 @@
             // 
             // TxtFilterBySKU
             // 
-            this.TxtFilterBySKU.Location = new System.Drawing.Point(112, 259);
+            this.TxtFilterBySKU.Location = new System.Drawing.Point(69, 242);
             this.TxtFilterBySKU.Name = "TxtFilterBySKU";
-            this.TxtFilterBySKU.Size = new System.Drawing.Size(151, 20);
+            this.TxtFilterBySKU.Size = new System.Drawing.Size(155, 20);
             this.TxtFilterBySKU.TabIndex = 21;
             this.TxtFilterBySKU.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtFilterBySKU_KeyUp);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 257);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(94, 20);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Filter Data";
             // 
             // LblAddedItems
             // 
@@ -251,9 +242,9 @@
             // PBLoading
             // 
             this.PBLoading.ForeColor = System.Drawing.Color.Lime;
-            this.PBLoading.Location = new System.Drawing.Point(-3, 1);
+            this.PBLoading.Location = new System.Drawing.Point(-8, -9);
             this.PBLoading.Name = "PBLoading";
-            this.PBLoading.Size = new System.Drawing.Size(701, 12);
+            this.PBLoading.Size = new System.Drawing.Size(715, 24);
             this.PBLoading.Step = 1;
             this.PBLoading.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.PBLoading.TabIndex = 26;
@@ -262,11 +253,11 @@
             // LblMessage
             // 
             this.LblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.LblMessage.Font = new System.Drawing.Font("Sitka Small", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblMessage.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblMessage.ForeColor = System.Drawing.Color.Red;
-            this.LblMessage.Location = new System.Drawing.Point(295, 252);
+            this.LblMessage.Location = new System.Drawing.Point(274, 255);
             this.LblMessage.Name = "LblMessage";
-            this.LblMessage.Size = new System.Drawing.Size(315, 43);
+            this.LblMessage.Size = new System.Drawing.Size(315, 25);
             this.LblMessage.TabIndex = 27;
             this.LblMessage.Text = "Message";
             // 
@@ -275,9 +266,17 @@
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(12, 221);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(58, 61);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 28;
+            this.pictureBox2.TabStop = false;
+            // 
             // BtnLoad
             // 
-            this.BtnLoad.BackgroundImage = global::BabatyeInventory.Properties.Resources.white;
             this.BtnLoad.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLoad.Location = new System.Drawing.Point(495, 373);
             this.BtnLoad.Name = "BtnLoad";
@@ -289,7 +288,6 @@
             // 
             // BtnReadFromExcel
             // 
-            this.BtnReadFromExcel.BackgroundImage = global::BabatyeInventory.Properties.Resources.white;
             this.BtnReadFromExcel.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.BtnReadFromExcel.FlatAppearance.BorderSize = 0;
             this.BtnReadFromExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -303,10 +301,10 @@
             // 
             // PBAddNewItem
             // 
-            this.PBAddNewItem.Image = global::BabatyeInventory.Properties.Resources.Add_icon;
-            this.PBAddNewItem.Location = new System.Drawing.Point(544, 172);
+            this.PBAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("PBAddNewItem.Image")));
+            this.PBAddNewItem.Location = new System.Drawing.Point(469, 76);
             this.PBAddNewItem.Name = "PBAddNewItem";
-            this.PBAddNewItem.Size = new System.Drawing.Size(66, 64);
+            this.PBAddNewItem.Size = new System.Drawing.Size(165, 162);
             this.PBAddNewItem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBAddNewItem.TabIndex = 17;
             this.PBAddNewItem.TabStop = false;
@@ -315,10 +313,10 @@
             // 
             // PBInsert
             // 
-            this.PBInsert.Image = global::BabatyeInventory.Properties.Resources.Floppy_Small_icon;
-            this.PBInsert.Location = new System.Drawing.Point(544, 76);
+            this.PBInsert.Image = ((System.Drawing.Image)(resources.GetObject("PBInsert.Image")));
+            this.PBInsert.Location = new System.Drawing.Point(469, 76);
             this.PBInsert.Name = "PBInsert";
-            this.PBInsert.Size = new System.Drawing.Size(66, 64);
+            this.PBInsert.Size = new System.Drawing.Size(165, 162);
             this.PBInsert.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBInsert.TabIndex = 16;
             this.PBInsert.TabStop = false;
@@ -327,9 +325,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BabatyeInventory.Properties.Resources.logo_new_300x96;
-            this.pictureBox1.Location = new System.Drawing.Point(36, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 21);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(356, 114);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
@@ -339,11 +338,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(696, 521);
+            this.Controls.Add(this.TxtFilterBySKU);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.LblMessage);
             this.Controls.Add(this.PBLoading);
             this.Controls.Add(this.PanelAddedItems);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.TxtFilterBySKU);
             this.Controls.Add(this.BtnLoad);
             this.Controls.Add(this.BtnReadFromExcel);
             this.Controls.Add(this.DGVExistingItems);
@@ -372,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DGVExistingItems)).EndInit();
             this.PanelAddedItems.ResumeLayout(false);
             this.PanelAddedItems.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBAddNewItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBInsert)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -402,13 +402,13 @@
         private System.Windows.Forms.Button BtnReadFromExcel;
         private System.Windows.Forms.Button BtnLoad;
         public System.Windows.Forms.TextBox TxtFilterBySKU;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label LblAddedItems;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel PanelAddedItems;
         private System.Windows.Forms.ProgressBar PBLoading;
         private System.Windows.Forms.Label LblMessage;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
