@@ -257,11 +257,9 @@ namespace BabatyeInventory
             if (Ofd.ShowDialog() == DialogResult.OK)
             {
                 filePath = Ofd.FileName;                
-                BtnLoad.Enabled = true;
             }
+            TotalRows = 0;
             LblMessage.Text = "Importing excel file...";
-            timer2.Enabled = true;
-            timer2.Start();
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
@@ -297,6 +295,7 @@ namespace BabatyeInventory
                 timer1.Enabled = true;
                 LblMessage.ForeColor = Color.Green;
                 LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
+                BtnLoad.Enabled = true;
                 Marshal.ReleaseComObject(xlWorkSheet);
                 Marshal.ReleaseComObject(xlWorkBook);
                 Marshal.ReleaseComObject(xlApp);
