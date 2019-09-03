@@ -256,10 +256,10 @@ namespace BabatyeInventory
             Ofd.FileOk += new System.ComponentModel.CancelEventHandler(OpenKeywordsFileDialog_FileOk);
             if (Ofd.ShowDialog() == DialogResult.OK)
             {
-                filePath = Ofd.FileName;                
+                filePath = Ofd.FileName;
+                LblMessage.Text = "Importing excel file...";
             }
-            TotalRows = 0;
-            LblMessage.Text = "Importing excel file...";
+            TotalRows = 0;           
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
