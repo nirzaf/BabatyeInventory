@@ -112,5 +112,18 @@ namespace BabatyeInventory
                 AddNewItem();
             }
         }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
+
+        private void AddProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Dispose();
+            }
+        }
     }
 }
