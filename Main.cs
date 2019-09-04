@@ -14,6 +14,10 @@ namespace BabatyeInventory
 {
     public partial class Main : Form
     {
+        public static string NewProductColor = "";
+        public static string NewProductSize = "";
+        public static string NewProductName = "";
+        public static string NewSKUNumber = "";
         readonly Cloth cloth = new Cloth();
         readonly DAL dal = new DAL();
         public string filePath = "";
@@ -302,30 +306,6 @@ namespace BabatyeInventory
             }
         }
 
-        public void ShowMyDialogBox()
-        {
-            AddNewProduct testDialog = new AddNewProduct(this);
-
-            // Show testDialog as a modal dialog and determine if DialogResult = OK.
-            if (testDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                // Read the contents of testDialog's TextBox.
-                if (testDialog.TxtNewName.Text.Trim() != "")
-                    TxtName.Text = testDialog.TxtNewName.Text;
-                else
-                    testDialog.TxtNewName.Focus();
-                if (testDialog.TxtNewColor.Text.Trim() != "")
-                    TxtColor.Text = testDialog.TxtNewColor.Text;
-                else
-                    testDialog.TxtNewColor.Focus();
-                if (testDialog.TxtNewSize.Text.Trim() != "")
-                    TxtSize.Text = testDialog.TxtNewSize.Text;
-                else
-                    testDialog.TxtNewSize.Focus();
-            }
-            testDialog.Dispose();
-        }
-
         private void BtnLoad_Click(object sender, EventArgs e)
         {
             PanelAddedItems.Visible = true;
@@ -365,8 +345,12 @@ namespace BabatyeInventory
                                     cloth.SKUNumber = TxtSKUNum.Text.Trim();
                                     TxtColor.Text = cloth.ProductColor();
                                     TxtSize.Text = cloth.ProductSize();
-                                    DisplayTextBoxes();
-                                    ShowMyDialogBox();
+                                    NewProductColor = TxtColor.Text.Trim();
+                                    NewProductSize = TxtSize.Text.Trim();
+                                    NewProductName = TxtName.Text.Trim();
+                                    NewSKUNumber = TxtSKUNum.Text.Trim();
+                                    AddProduct Ap = new AddProduct();
+                                    Ap.ShowDialog();
                                 }
                             }
                             TotalProducts += Result;

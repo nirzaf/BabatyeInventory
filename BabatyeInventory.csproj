@@ -50,11 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddNewProduct.cs">
+    <Compile Include="AddProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddNewProduct.Designer.cs">
-      <DependentUpon>AddNewProduct.cs</DependentUpon>
+    <Compile Include="AddProduct.Designer.cs">
+      <DependentUpon>AddProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Cloth.cs" />
     <Compile Include="DAL.cs" />
@@ -67,8 +67,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddNewProduct.resx">
-      <DependentUpon>AddNewProduct.cs</DependentUpon>
+    <EmbeddedResource Include="AddProduct.resx">
+      <DependentUpon>AddProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -99,8 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo_new-300x96.png" />
-    <None Include="Resources\Floppy-Small-icon.png" />
-    <None Include="Resources\Add-icon.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -124,21 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\white.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\source.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bars-1s-200px.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thumbnail_large.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thumbnail_large %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thumbnail_large %282%29.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Search.png" />
