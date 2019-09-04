@@ -310,8 +310,18 @@ namespace BabatyeInventory
             if (testDialog.ShowDialog(this) == DialogResult.OK)
             {
                 // Read the contents of testDialog's TextBox.
-                TxtName.Text = testDialog.TxtName.Text;
-
+                if (testDialog.TxtNewName.Text.Trim() != "")
+                    TxtName.Text = testDialog.TxtNewName.Text;
+                else
+                    testDialog.TxtNewName.Focus();
+                if (testDialog.TxtNewColor.Text.Trim() != "")
+                    TxtColor.Text = testDialog.TxtNewColor.Text;
+                else
+                    testDialog.TxtNewColor.Focus();
+                if (testDialog.TxtNewSize.Text.Trim() != "")
+                    TxtSize.Text = testDialog.TxtNewSize.Text;
+                else
+                    testDialog.TxtNewSize.Focus();
             }
             testDialog.Dispose();
         }

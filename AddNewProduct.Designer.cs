@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNewProduct));
-            this.TxtColor = new System.Windows.Forms.TextBox();
+            this.TxtNewColor = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.TxtSize = new System.Windows.Forms.TextBox();
+            this.TxtNewSize = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.TxtName = new System.Windows.Forms.TextBox();
+            this.TxtNewName = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // TxtColor
+            // TxtNewColor
             // 
-            this.TxtColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtColor.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TxtColor.Location = new System.Drawing.Point(13, 34);
-            this.TxtColor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtColor.Name = "TxtColor";
-            this.TxtColor.Size = new System.Drawing.Size(230, 26);
-            this.TxtColor.TabIndex = 0;
+            this.TxtNewColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtNewColor.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtNewColor.Location = new System.Drawing.Point(13, 34);
+            this.TxtNewColor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtNewColor.Name = "TxtNewColor";
+            this.TxtNewColor.Size = new System.Drawing.Size(230, 26);
+            this.TxtNewColor.TabIndex = 0;
             // 
             // label1
             // 
@@ -68,15 +68,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Size";
             // 
-            // TxtSize
+            // TxtNewSize
             // 
-            this.TxtSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtSize.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TxtSize.Location = new System.Drawing.Point(13, 92);
-            this.TxtSize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtSize.Name = "TxtSize";
-            this.TxtSize.Size = new System.Drawing.Size(230, 26);
-            this.TxtSize.TabIndex = 2;
+            this.TxtNewSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtNewSize.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtNewSize.Location = new System.Drawing.Point(13, 92);
+            this.TxtNewSize.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtNewSize.Name = "TxtNewSize";
+            this.TxtNewSize.Size = new System.Drawing.Size(230, 26);
+            this.TxtNewSize.TabIndex = 2;
             // 
             // label3
             // 
@@ -88,16 +88,16 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Name";
             // 
-            // TxtName
+            // TxtNewName
             // 
-            this.TxtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtName.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.TxtName.Location = new System.Drawing.Point(13, 149);
-            this.TxtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(230, 26);
-            this.TxtName.TabIndex = 4;
-            this.TxtName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtName_KeyPress);
+            this.TxtNewName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtNewName.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.TxtNewName.Location = new System.Drawing.Point(13, 149);
+            this.TxtNewName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TxtNewName.Name = "TxtNewName";
+            this.TxtNewName.Size = new System.Drawing.Size(230, 26);
+            this.TxtNewName.TabIndex = 4;
+            this.TxtNewName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtName_KeyPress);
             // 
             // button1
             // 
@@ -122,11 +122,11 @@
             this.ClientSize = new System.Drawing.Size(256, 269);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.TxtName);
+            this.Controls.Add(this.TxtNewName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.TxtSize);
+            this.Controls.Add(this.TxtNewSize);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.TxtColor);
+            this.Controls.Add(this.TxtNewColor);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -141,13 +141,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox TxtColor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TxtSize;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox TxtName;
+        public System.Windows.Forms.TextBox TxtNewName;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.TextBox TxtNewColor;
+        public System.Windows.Forms.TextBox TxtNewSize;
     }
 }

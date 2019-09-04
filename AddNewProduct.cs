@@ -9,7 +9,7 @@ namespace BabatyeInventory
         public Main main;
         public string SKUNumber = "";
         readonly Cloth cloth = new Cloth();
-        DAL dal = new DAL();
+        DAL Dal = new DAL();
 
         public AddNewProduct(Main main)
         {
@@ -27,13 +27,13 @@ namespace BabatyeInventory
             SKUNumber = main.TxtSKUNum.Text;
             if (!string.IsNullOrEmpty(main.TxtColor.Text))
             {
-                TxtColor.Text = main.TxtColor.Text;
-                TxtColor.Enabled = false;
+                TxtNewColor.Text = main.TxtColor.Text;
+                TxtNewColor.Enabled = false;
             }
             if (!string.IsNullOrEmpty(main.TxtSize.Text))
             {
-                TxtSize.Text = main.TxtSize.Text;
-                TxtSize.Enabled = false;
+                TxtNewSize.Text = main.TxtSize.Text;
+                TxtNewSize.Enabled = false;
             }                
         }
 
@@ -45,28 +45,31 @@ namespace BabatyeInventory
         public void AddNewItem()
         {
             SKUNumber = main.TxtSKUNum.Text;
-            TxtColor.Text = main.TxtColor.Text;
-            TxtSize.Text = main.TxtSize.Text;
-
-            if (TxtColor.Text.Trim() != "")
-                TxtColor.Enabled = false;
-
-            if (TxtSize.Text.Trim() != "")
-                TxtSize.Enabled = false;
+            
+            if (TxtNewColor.Text.Trim() != "")
+            {
+                TxtNewColor.Enabled = false;
+                TxtNewColor.Text = main.TxtColor.Text;
+            }
+            if (TxtNewSize.Text.Trim() != "")
+            {
+                TxtNewSize.Enabled = false;
+                TxtNewSize.Text = main.TxtSize.Text;
+            }
 
             if (!string.IsNullOrEmpty(SKUNumber))
             {
                 cloth.SKUNumber = SKUNumber;
-                if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
+                if (TxtNewColor.Text.Trim()!="")
                 {
-                    cloth.Color = TxtColor.Text.Trim();
-                    if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
+                    cloth.Color = TxtNewColor.Text.Trim();
+                    if (TxtNewSize.Text.Trim()!="")
                     {
-                        cloth.Size = TxtSize.Text.Trim();
-                        if (!string.IsNullOrEmpty(TxtName.Text.Trim()))
+                        cloth.Size = TxtNewSize.Text.Trim();
+                        if (TxtNewName.Text.Trim()!="")
                         {
-                            cloth.Name = TxtName.Text.Trim();
-                            int Result = dal.AddNewCloth(cloth);
+                            cloth.Name = TxtNewName.Text.Trim();
+                            int Result = Dal.AddNewCloth(cloth);
                             if (Result > 0)
                             {
                                 MessageBox.Show("New Item Added Successfully");
@@ -81,19 +84,19 @@ namespace BabatyeInventory
                         else
                         {
                             MessageBox.Show("Product Name cannot be empty");
-                            TxtName.Focus();
+                            TxtNewName.Focus();
                         }
                     }
                     else
                     {
                         MessageBox.Show("Size cannot be empty");
-                        TxtSize.Focus();
+                        TxtNewSize.Focus();
                     }
                 }
                 else
                 {
                     MessageBox.Show("Color cannot be empty");
-                    TxtColor.Focus();
+                    TxtNewColor.Focus();
                 }
             }
             else
