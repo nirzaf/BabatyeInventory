@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Windows.Forms;
 
 namespace BabatyeInventory
@@ -11,16 +12,26 @@ namespace BabatyeInventory
         DbConn C = new DbConn();
         public int InsertCloth(Cloth cloth)
         {
+            string sql = "UPDATE tbl_clothes SET Count = Count + 1 WHERE tbl_clothes.SKU = @SKUNumber";
+            int result = 0;
             try
             {
-                SqlCommand cmd = new SqlCommand("InsertClothes", C.Con)
+                C.Con.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(C.Con))
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
-                cmd.Parameters.Add(new SqlParameter("@SKUNumber", cloth.SKUNumber));
-                cmd.Connection.Open();
-                int Result = cmd.ExecuteNonQuery();
-                return Result;
+                    cmd.CommandText = sql;
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@SKUNUmber", cloth.SKUNumber);
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }              
+                return result;
             }
             catch (Exception ex)
             {
@@ -38,19 +49,29 @@ namespace BabatyeInventory
 
         public int AddNewCloth(Cloth cloth)
         {
+            int result = 0;
             try
             {
-                SqlCommand cmd = new SqlCommand("AddNewItem", C.Con)
+                string sql = "INSERT INTO tbl_clothes (SKU,Name,Size,Color) VALUES (@SKUNumber,@Name,@Size,@Color) ";
+                C.Con.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(C.Con))
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
-                cmd.Parameters.Add(new SqlParameter("@SKUNumber", cloth.SKUNumber));
-                cmd.Parameters.Add(new SqlParameter("@Name", cloth.Name));
-                cmd.Parameters.Add(new SqlParameter("@Size", cloth.Size));
-                cmd.Parameters.Add(new SqlParameter("@Color", cloth.Color));
-                cmd.Connection.Open();
-                int Result = cmd.ExecuteNonQuery();             
-                return Result;
+                    cmd.CommandText = sql;
+                    cmd.Prepare();
+                    cmd.Parameters.Add(new SQLiteParameter("@SKUNumber", cloth.SKUNumber));
+                    cmd.Parameters.Add(new SQLiteParameter("@Name", cloth.Name));
+                    cmd.Parameters.Add(new SQLiteParameter("@Size", cloth.Size));
+                    cmd.Parameters.Add(new SQLiteParameter("@Color", cloth.Color));
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }                     
+                return result;
             }
             catch (Exception ex)
             {
@@ -71,12 +92,14 @@ namespace BabatyeInventory
             DataTable dt = new DataTable();
             try
             {
-                SqlCommand cmd = new SqlCommand("ViewProducts", C.Con)
+                string sql = "SELECT * FROM tbl_clothes";
+                C.Con.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(C.Con))
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
-                SqlDataAdapter Sda = new SqlDataAdapter(cmd);
-                Sda.Fill(dt);
+                    cmd.CommandText = sql;
+                    SQLiteDataAdapter Sda = new SQLiteDataAdapter(cmd);
+                    Sda.Fill(dt);
+                }              
                 return dt;
             }
             catch (Exception ex)
@@ -100,15 +123,16 @@ namespace BabatyeInventory
                 try
                 {
                     DataSet NameOfProduct = new DataSet();
-
-                    SqlCommand cmd = new SqlCommand("GetName", C.Con)
+                    string sql = "SELECT tbl_clothes.Name FROM tbl_clothes Where SKU =  @SKUNumber";
+                    C.Con.Open();
+                    using (SQLiteCommand cmd = new SQLiteCommand(C.Con))
                     {
-                        CommandType = CommandType.StoredProcedure
-                    };
-
-                    cmd.Parameters.Add(new SqlParameter("@SKUNumber", SKUNumber));
-                    SqlDataAdapter Sda = new SqlDataAdapter(cmd);
-                    Sda.Fill(NameOfProduct);
+                        cmd.CommandText = sql;
+                        cmd.Parameters.Add(new SQLiteParameter("@SKUNumber", SKUNumber));
+                        SQLiteDataAdapter Sda = new SQLiteDataAdapter(cmd);
+                        Sda.Fill(NameOfProduct);
+                    }
+                
                     if (NameOfProduct.Tables[0].Rows.Count != 0)
                     {
                         return NameOfProduct.Tables[0].Rows[0]["Name"].ToString();

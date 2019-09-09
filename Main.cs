@@ -45,8 +45,24 @@ namespace BabatyeInventory
             {
                 TxtName.Focus();
             }
-            cloth.Color = cloth.ProductColor();
-            cloth.Size = cloth.ProductSize();
+            if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
+            {
+                cloth.Color = cloth.ProductColor();
+            }
+            else
+            {
+                TxtColor.Enabled = true;
+                TxtColor.Focus();
+            }
+            if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
+            {
+                cloth.Size = cloth.ProductSize();
+            }
+            else
+            {
+                TxtSize.Enabled = true;
+                TxtSize.Focus();
+            }
 
             int Result = dal.InsertCloth(cloth);
             try
@@ -99,14 +115,10 @@ namespace BabatyeInventory
             DGVExistingItems.DataSource = dal.LoadDGV();
 
             //set autosize mode
-             DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            for(int i=0;i<DGVExistingItems.Columns.Count;i=i+2)
-             DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
+            DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            for (int i = 0; i < DGVExistingItems.Columns.Count; i = i + 2)
+                DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
 
-
-           // DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             //datagrid has calculated it's widths so we can store them
             for (int i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
@@ -275,34 +287,41 @@ namespace BabatyeInventory
             xlApp = new Excel.Application();
             if (filePath != "")
             {
-                int totalRows = 0;
-                xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                totalRows = xlWorkSheet.UsedRange.Rows.Count;
-                PBLoading.Visible = true;
-                PBLoading.Maximum = totalRows; // your loop max no.
-                PBLoading.Minimum = 0;
-                range = xlWorkSheet.UsedRange.Columns[1];
-                rw = range.Rows.Count;
-                cl = 1;
-                for (rCnt = 2; rCnt <= rw; rCnt++)
+                try
                 {
-                    for (cCnt = 1; cCnt <= cl; cCnt++)
+                    int totalRows = 0;
+                    xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                    xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                    totalRows = xlWorkSheet.UsedRange.Rows.Count;
+                    PBLoading.Visible = true;
+                    PBLoading.Maximum = totalRows; // your loop max no.
+                    PBLoading.Minimum = 0;
+                    range = xlWorkSheet.UsedRange.Columns[1];
+                    rw = range.Rows.Count;
+                    cl = 1;
+                    for (rCnt = 2; rCnt <= rw; rCnt++)
                     {
-                        TotalRows++;
-                        PBLoading.Value = TotalRows;
-                    }  
+                        for (cCnt = 1; cCnt <= cl; cCnt++)
+                        {
+                            TotalRows++;
+                            PBLoading.Value = TotalRows;
+                        }
+                    }
+                    LoadDGV();
+                    xlWorkBook.Close(true, null, null);
+                    xlApp.Quit();
+                    timer1.Enabled = true;
+                    LblMessage.ForeColor = Color.Green;
+                    LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
+                    BtnLoad.Enabled = true;
+                    Marshal.ReleaseComObject(xlWorkSheet);
+                    Marshal.ReleaseComObject(xlWorkBook);
+                    Marshal.ReleaseComObject(xlApp);
                 }
-                LoadDGV();
-                xlWorkBook.Close(true, null, null);
-                xlApp.Quit();
-                timer1.Enabled = true;
-                LblMessage.ForeColor = Color.Green;
-                LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
-                BtnLoad.Enabled = true;
-                Marshal.ReleaseComObject(xlWorkSheet);
-                Marshal.ReleaseComObject(xlWorkBook);
-                Marshal.ReleaseComObject(xlApp);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -409,6 +428,14 @@ namespace BabatyeInventory
             else
             {
                 LblMessage.Text = "";
+            }
+        }
+
+        private void TxtSKUNum_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                InsertProduct();
             }
         }
     }

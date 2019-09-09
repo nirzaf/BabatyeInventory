@@ -73,6 +73,7 @@
             this.TxtSKUNum.Name = "TxtSKUNum";
             this.TxtSKUNum.Size = new System.Drawing.Size(290, 29);
             this.TxtSKUNum.TabIndex = 0;
+            this.TxtSKUNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSKUNum_KeyPress_1);
             this.TxtSKUNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TxtSKUNum_KeyUp);
             // 
             // label1
