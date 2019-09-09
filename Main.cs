@@ -1,12 +1,8 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Data;
-using System.Data.OleDb;
 using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 
