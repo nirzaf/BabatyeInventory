@@ -399,7 +399,7 @@ namespace BabatyeInventory
         {
             if (e.KeyChar == 13)
             {
-                AddNewItem();
+                InsertProduct();
             }
         }
 
@@ -421,6 +421,14 @@ namespace BabatyeInventory
             else
             {
                 LblMessage.Text = "";
+            }
+        }
+
+        private void TxtSKUNum_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                InsertProduct();
             }
         }
     }
