@@ -41,8 +41,24 @@ namespace BabatyeInventory
             {
                 TxtName.Focus();
             }
-            cloth.Color = cloth.ProductColor();
-            cloth.Size = cloth.ProductSize();
+            if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
+            {
+                cloth.Color = cloth.ProductColor();
+            }
+            else
+            {
+                TxtColor.Enabled = true;
+                TxtColor.Focus();
+            }
+            if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
+            {
+                cloth.Size = cloth.ProductSize();
+            }
+            else
+            {
+                TxtSize.Enabled = true;
+                TxtSize.Focus();
+            }
 
             int Result = dal.InsertCloth(cloth);
             try
