@@ -19,6 +19,7 @@ namespace BabatyeInventory
         public string filePath = "";
         public int TotalRows = 0;
         public int Count = 100;
+        public static int TotalProducts = 0;
 
         public Main()
         {
@@ -275,7 +276,7 @@ namespace BabatyeInventory
                 filePath = Ofd.FileName;
                 LblMessage.Text = "Importing excel file...";
             }
-            TotalRows = 0;           
+            TotalRows = 0;
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
@@ -320,7 +321,7 @@ namespace BabatyeInventory
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
-            PanelAddedItems.Visible = true;
+            TotalProducts = 0;          
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
@@ -337,8 +338,7 @@ namespace BabatyeInventory
                 xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 range = xlWorkSheet.UsedRange.Columns[1];
                 rw = range.Rows.Count;
-                cl = 1;
-                int TotalProducts = 0;
+                cl = 1;               
                 for (rCnt = 2; rCnt <= rw; rCnt++)
                 {
                     for (cCnt = 1; cCnt <= cl; cCnt++)
@@ -367,6 +367,7 @@ namespace BabatyeInventory
                             }
                             TotalProducts += Result;
                             LblAddedItems.Text = TotalProducts.ToString();
+                            PanelAddedItems.Visible = true;
                             LoadDGV();
                         }
                     }

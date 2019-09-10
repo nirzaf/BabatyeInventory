@@ -58,6 +58,7 @@ namespace BabatyeInventory
                             if (Result > 0)
                             {
                                 MessageBox.Show("New Item Added Successfully");
+                                Main.TotalProducts++;
                                 Dispose();
                             }
                             else

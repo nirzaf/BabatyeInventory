@@ -234,6 +234,7 @@
             // 
             // PanelAddedItems
             // 
+            this.PanelAddedItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelAddedItems.Controls.Add(this.label10);
             this.PanelAddedItems.Controls.Add(this.LblAddedItems);
             this.PanelAddedItems.Location = new System.Drawing.Point(495, 285);
