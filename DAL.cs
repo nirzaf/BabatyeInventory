@@ -9,10 +9,10 @@ namespace BabatyeInventory
 {
     class DAL
     {
-        DbConn C = new DbConn();
+        readonly DbConn C = new DbConn();
         public int InsertCloth(Cloth cloth)
         {
-            string sql = "UPDATE tbl_clothes SET Count = Count + 1 WHERE tbl_clothes.SKU = @SKUNumber";
+            string sql = "UPDATE tbl_clothes SET tbl_clothes.Count = Count + 1 WHERE tbl_clothes.SKU = @SKUNumber";
             int result = 0;
             try
             {
