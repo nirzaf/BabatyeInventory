@@ -14,8 +14,8 @@ namespace BabatyeInventory
         public static string NewProductSize = "";
         public static string NewProductName = "";
         public static string NewSKUNumber = "";
-        readonly Cloth cloth = new Cloth();
-        readonly DAL dal = new DAL();
+        Cloth cloth = new Cloth();
+        DAL dal = new DAL();
         public string filePath = "";
         public int TotalRows = 0;
         public int Count = 100;

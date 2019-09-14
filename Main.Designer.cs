@@ -186,7 +186,7 @@
             this.BtnAddNewItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAddNewItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.BtnAddNewItem.ForeColor = System.Drawing.Color.White;
-            this.BtnAddNewItem.Location = new System.Drawing.Point(944, 140);
+            this.BtnAddNewItem.Location = new System.Drawing.Point(944, 173);
             this.BtnAddNewItem.Name = "BtnAddNewItem";
             this.BtnAddNewItem.Size = new System.Drawing.Size(197, 27);
             this.BtnAddNewItem.TabIndex = 12;

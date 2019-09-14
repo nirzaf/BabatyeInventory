@@ -13,14 +13,15 @@ namespace BabatyeInventory
         public int InsertCloth(Cloth cloth)
         {
             string sql = "UPDATE tbl_clothes SET tbl_clothes.Count = Count + 1 WHERE tbl_clothes.SKU = @SKUNumber";
+
             int result = 0;
             try
             {
-                C.Con.Open();
+                C.Con.Open();  //opening the connection 
                 using (SQLiteCommand cmd = new SQLiteCommand(C.Con))
                 {
-                    cmd.CommandText = sql;
-                    cmd.Prepare();
+                    cmd.CommandText = sql;  //Assign sql string to sql command text
+                    cmd.Prepare();     
                     cmd.Parameters.AddWithValue("@SKUNUmber", cloth.SKUNumber);
                     try
                     {
