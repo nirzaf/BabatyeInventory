@@ -15,6 +15,19 @@ namespace BabatyeInventory
             InitializeComponent();
         }
 
+        protected override void WndProc(ref Message m)//for draging window_start
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
+            base.WndProc(ref m);
+        }
+
         private void AddProduct_Load(object sender, EventArgs e)
         {
             TxtColor1.Text = Main.NewProductColor;

@@ -26,6 +26,19 @@ namespace BabatyeInventory
             InitializeComponent();
         }
 
+        protected override void WndProc(ref Message m)//for draging window_start
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
+            base.WndProc(ref m);
+        }
+
         private void BtnInsert_Click(object sender, EventArgs e)
         {
             InsertProduct();
@@ -112,13 +125,13 @@ namespace BabatyeInventory
             DGVExistingItems.DataSource = dal.LoadDGV();
 
             //set autosize mode
-             DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            for(int i=0;i<DGVExistingItems.Columns.Count;i=i+2)
-             DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
+            for (int i = 0; i < DGVExistingItems.Columns.Count; i = i + 2)
+                DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
 
 
-           // DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            // DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             //datagrid has calculated it's widths so we can store them
@@ -141,8 +154,8 @@ namespace BabatyeInventory
             BtnAddNewItem.Visible = false;
             BtnAddNewItem.Enabled = false;
             BtnInsert.Enabled = true;
-            PBInsert.Visible = true;
-            PBAddNewItem.Visible = false;
+            //PBInsert.Visible = true;
+            //PBAddNewItem.Visible = false;
         }
 
         public void DisplayTextBoxes()
@@ -150,7 +163,7 @@ namespace BabatyeInventory
             TxtColor.Visible = true;
             TxtSize.Visible = true;
             TxtName.Visible = true;
-            PBAddNewItem.Visible = true;
+            //PBAddNewItem.Visible = true;
 
             if (TxtColor.Text.Trim() != "")
                 TxtColor.Enabled = false;
@@ -161,7 +174,7 @@ namespace BabatyeInventory
             BtnAddNewItem.Visible = true;
             BtnAddNewItem.Enabled = true;
             BtnInsert.Enabled = false;
-            PBInsert.Visible = false;
+            //PBInsert.Visible = false;
         }
 
         private void BtnAddNewItem_Click(object sender, EventArgs e)
@@ -431,6 +444,16 @@ namespace BabatyeInventory
             {
                 InsertProduct();
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void MainBorder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

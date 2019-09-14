@@ -37,95 +37,131 @@
             this.label3 = new System.Windows.Forms.Label();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.MainBorder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(15, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.Size = new System.Drawing.Size(45, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Color";
             // 
             // TxtColor1
             // 
-            this.TxtColor1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtColor1.Location = new System.Drawing.Point(14, 33);
+            this.TxtColor1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.TxtColor1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtColor1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtColor1.ForeColor = System.Drawing.Color.Lime;
+            this.TxtColor1.Location = new System.Drawing.Point(19, 33);
             this.TxtColor1.Name = "TxtColor1";
-            this.TxtColor1.Size = new System.Drawing.Size(203, 26);
+            this.TxtColor1.Size = new System.Drawing.Size(206, 27);
             this.TxtColor1.TabIndex = 1;
             this.TxtColor1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtColor1_KeyPress);
             // 
             // TxtSize1
             // 
-            this.TxtSize1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtSize1.Location = new System.Drawing.Point(14, 85);
+            this.TxtSize1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.TxtSize1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtSize1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtSize1.ForeColor = System.Drawing.Color.Lime;
+            this.TxtSize1.Location = new System.Drawing.Point(19, 85);
             this.TxtSize1.Name = "TxtSize1";
-            this.TxtSize1.Size = new System.Drawing.Size(203, 26);
+            this.TxtSize1.Size = new System.Drawing.Size(206, 27);
             this.TxtSize1.TabIndex = 3;
             this.TxtSize1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSize1_KeyPress);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 62);
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(15, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 20);
+            this.label2.Size = new System.Drawing.Size(36, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Size";
             // 
             // TxtName1
             // 
-            this.TxtName1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtName1.Location = new System.Drawing.Point(14, 143);
+            this.TxtName1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.TxtName1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtName1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtName1.ForeColor = System.Drawing.Color.Lime;
+            this.TxtName1.Location = new System.Drawing.Point(19, 143);
             this.TxtName1.Name = "TxtName1";
-            this.TxtName1.Size = new System.Drawing.Size(203, 26);
+            this.TxtName1.Size = new System.Drawing.Size(206, 27);
             this.TxtName1.TabIndex = 5;
             this.TxtName1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtName1_KeyPress);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 120);
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(15, 123);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 20);
+            this.label3.Size = new System.Drawing.Size(104, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Product Name";
             // 
             // BtnAdd
             // 
-            this.BtnAdd.BackgroundImage = global::BabatyeInventory.Properties.Resources.white;
-            this.BtnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnAdd.Location = new System.Drawing.Point(11, 175);
+            this.BtnAdd.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.BtnAdd.FlatAppearance.BorderSize = 0;
+            this.BtnAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.BtnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAdd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAdd.ForeColor = System.Drawing.Color.White;
+            this.BtnAdd.Location = new System.Drawing.Point(19, 187);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(206, 63);
             this.BtnAdd.TabIndex = 6;
             this.BtnAdd.Text = "Add";
-            this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnCancel
             // 
-            this.BtnCancel.BackgroundImage = global::BabatyeInventory.Properties.Resources.white;
-            this.BtnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancel.Location = new System.Drawing.Point(11, 244);
+            this.BtnCancel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.BtnCancel.FlatAppearance.BorderSize = 0;
+            this.BtnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
+            this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCancel.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCancel.ForeColor = System.Drawing.Color.White;
+            this.BtnCancel.Location = new System.Drawing.Point(19, 256);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(206, 63);
             this.BtnCancel.TabIndex = 7;
             this.BtnCancel.Text = "Cancel";
-            this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.UseVisualStyleBackColor = false;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // MainBorder
+            // 
+            this.MainBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.MainBorder.Enabled = false;
+            this.MainBorder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MainBorder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.MainBorder.Location = new System.Drawing.Point(0, 0);
+            this.MainBorder.Name = "MainBorder";
+            this.MainBorder.Size = new System.Drawing.Size(245, 330);
+            this.MainBorder.TabIndex = 100;
+            this.MainBorder.UseVisualStyleBackColor = false;
             // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(228, 317);
+            this.ClientSize = new System.Drawing.Size(245, 330);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnAdd);
             this.Controls.Add(this.TxtName1);
@@ -134,6 +170,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TxtColor1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.MainBorder);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddProduct";
@@ -156,5 +193,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.Button BtnCancel;
+        private System.Windows.Forms.Button MainBorder;
     }
 }
