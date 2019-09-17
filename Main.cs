@@ -430,9 +430,11 @@ namespace BabatyeInventory
                     FileSystem.DeleteFile(filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
                 BtnLoad.Enabled = false;
                 PanelAddedItems.Visible = false;
-                //Begin Asyc Process
-                var serverProvider = new SqlSyncProvider(DbConn.ClientDB);
-                var clientProvider = new SqlSyncProvider(DbConn.ServerDB);
+                string ClientDB = "Data Source= babatye.db; Version=3; FailIfMissing=True; Foreign Keys=True;";
+                string ServerDB = "workstation id = babatye.mssql.somee.com; packet size = 4096; user id = babatye_SQLLogin_1; pwd=2jdfhb4nco;data source = babatye.mssql.somee.com; persist security info=False;initial catalog = babatye; MultipleActiveResultSets=True";
+                //Begin SyNc Process
+                var serverProvider = new SqlSyncProvider(ClientDB);
+                var clientProvider = new SqlSyncProvider(ServerDB);
 
                 // Tables involved in the sync process:
                 var tables = new string[] { "tbl_clothes" };
