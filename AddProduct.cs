@@ -33,7 +33,7 @@ namespace BabatyeInventory
             TxtColor1.Text = Main.NewProductColor;
             TxtSize1.Text = Main.NewProductSize;
             TxtName1.Text = Main.NewProductName;
-            SKUNumber = Main.NewSKUNumber;
+            SKUNumber = Main.NewSkuNumber;
             if (TxtColor1.Text != "")
             {
                 TxtColor1.Enabled = false;

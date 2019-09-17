@@ -3926,4 +3926,7 @@
         AAAGAQAAAAEAAAABAAAAAwAAAAcAAPkDAAD/AwAA/4cAAP+HAAA=
 </value>
   </data>
+  <data name="Main_InsertProduct_Product_Added_Successfully" xml:space="preserve">
+    <value>Product Added Successfully</value>
+  </data>
 </root>

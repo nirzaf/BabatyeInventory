@@ -15,12 +15,11 @@ namespace BabatyeInventory
         public static string NewProductColor = "";
         public static string NewProductSize = "";
         public static string NewProductName = "";
-        public static string NewSKUNumber = "";
-        Cloth cloth = new Cloth();
-        DAL dal = new DAL();
-        public string filePath = "";
-        public int TotalRows = 0;
-        public int Count = 100;
+        public static string NewSkuNumber = "";
+        private readonly Cloth _cloth = new Cloth();
+        private readonly DAL _dal = new DAL();
+        private string _filePath = "";
+        private int _totalRows = 0;
         public static int TotalProducts = 0;
 
         public Main()
@@ -46,29 +45,29 @@ namespace BabatyeInventory
             InsertProduct();
         }
 
-        public void InsertProduct()
+        private void InsertProduct()
         {
-            cloth.SKUNumber = TxtSKUNum.Text.Trim();
-            if (!string.IsNullOrEmpty(TxtName.Text.Trim()))
+            _cloth.SKUNumber = TxtSKUNum.Text.Trim();
+            if (!string.IsNullOrEmpty(value: TxtName.Text.Trim()))
             {
-                cloth.Name = TxtName.Text.Trim();
+                _cloth.Name = TxtName.Text.Trim();
             }
             else
             {
                 TxtName.Focus();
             }
-            if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
+            if (!string.IsNullOrEmpty(value: TxtColor.Text.Trim()))
             {
-                cloth.Color = cloth.ProductColor();
+                _cloth.Color = _cloth.ProductColor();
             }
             else
             {
                 TxtColor.Enabled = true;
                 TxtColor.Focus();
             }
-            if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
+            if (!string.IsNullOrEmpty(value: TxtSize.Text.Trim()))
             {
-                cloth.Size = cloth.ProductSize();
+                _cloth.Size = _cloth.ProductSize();
             }
             else
             {
@@ -76,72 +75,82 @@ namespace BabatyeInventory
                 TxtSize.Focus();
             }
 
-            int Result = dal.InsertCloth(cloth);
+            var result = _dal.InsertCloth(cloth: _cloth);
             try
             {
-                if (Result > 0)
+                if (result > 0)
                 {
-                    MessageBox.Show("Product Added Successfully");
-                    LoadDGV();
+                    MessageBox.Show(text: @"Product Added Successfully");
+                    LoadDgv();
                 }
                 else
                 {
-                    DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    var dialogResult = MessageBox.Show(text: @"This item does not exist, would you like add it?", caption: @"Item Not Exist!", buttons: MessageBoxButtons.YesNo);
+                    switch (dialogResult)
                     {
-                        cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                        TxtColor.Text = cloth.ProductColor();
-                        TxtSize.Text = cloth.ProductSize();
-                        DisplayTextBoxes();
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        return;
+                        case DialogResult.Yes:
+                            _cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                            TxtColor.Text = _cloth.ProductColor();
+                            TxtSize.Text = _cloth.ProductSize();
+                            DisplayTextBoxes();
+                            break;
+                        case DialogResult.No:
+                            return;
+                        case DialogResult.None:
+                            break;
+                        case DialogResult.OK:
+                            break;
+                        case DialogResult.Cancel:
+                            break;
+                        case DialogResult.Abort:
+                            break;
+                        case DialogResult.Retry:
+                            break;
+                        case DialogResult.Ignore:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(text: ex.Message);
             }
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            cloth.SKUNumber = TxtSKUNum.Text.Trim();
-            label1.Text = cloth.ProductColor();
-            label2.Text = cloth.ProductSize();
-            label3.Text = cloth.ProductName();
+            _cloth.SKUNumber = TxtSKUNum.Text.Trim();
+            label1.Text = _cloth.ProductColor();
+            label2.Text = _cloth.ProductSize();
+            label3.Text = _cloth.ProductName();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
             HideTextBoxes();
-            LoadDGV();
+            LoadDgv();
             BtnLoad.Enabled = false;
             LblMessage.Text = "";
         }
 
-        public void LoadDGV()
+        private void LoadDgv()
         {
-            DGVExistingItems.DataSource = dal.LoadDGV();
+            DGVExistingItems.DataSource = _dal.LoadDGV();
 
             //set autosize mode
             DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            for (int i = 0; i < DGVExistingItems.Columns.Count; i = i + 2)
+            for (var i = 0; i < DGVExistingItems.Columns.Count; i += 2)
                 DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
 
-
-            // DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            //datagrid has calculated it's widths so we can store them
-            for (int i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
+            //data grid has calculated it's widths so we can store them
+            for (var i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
             {
-                //store autosized widths
-                int colw = DGVExistingItems.Columns[i].Width;
-                //remove autosizing
+                //store auto sized widths
+                var colw = DGVExistingItems.Columns[i].Width;
+                //remove auto sizing
                 DGVExistingItems.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 //set width to calculated by autosize
                 DGVExistingItems.Columns[i].Width = colw;
@@ -176,10 +185,10 @@ namespace BabatyeInventory
                 }
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
 
-            Console.WriteLine("End");
+            Console.WriteLine(@"End");
         }
 
-        public void HideTextBoxes()
+        private void HideTextBoxes()
         {
             TxtColor.Visible = false;
             TxtSize.Visible = false;
@@ -191,7 +200,7 @@ namespace BabatyeInventory
             //PBAddNewItem.Visible = false;
         }
 
-        public void DisplayTextBoxes()
+        private void DisplayTextBoxes()
         {
             TxtColor.Visible = true;
             TxtSize.Visible = true;
@@ -215,53 +224,53 @@ namespace BabatyeInventory
             AddNewItem();
         }
 
-        public void AddNewItem()
+        private void AddNewItem()
         {
             if (!string.IsNullOrEmpty(TxtSKUNum.Text.Trim()))
             {
-                cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                _cloth.SKUNumber = TxtSKUNum.Text.Trim();
                 if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
                 {
-                    cloth.Color = TxtColor.Text.Trim();
+                    _cloth.Color = TxtColor.Text.Trim();
                     if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
                     {
-                        cloth.Size = TxtSize.Text.Trim();
+                        _cloth.Size = TxtSize.Text.Trim();
                         if (!string.IsNullOrEmpty(TxtName.Text.Trim()))
                         {
-                            cloth.Name = TxtName.Text.Trim();
-                            int Result = dal.AddNewCloth(cloth);
-                            if (Result > 0)
+                            _cloth.Name = TxtName.Text.Trim();
+                            var result = _dal.AddNewCloth(_cloth);
+                            if (result > 0)
                             {
-                                MessageBox.Show("New Item Added Successfully");
-                                LoadDGV();
+                                MessageBox.Show(@"New Item Added Successfully");
+                                LoadDgv();
                                 HideTextBoxes();
                             }
                             else
                             {
-                                MessageBox.Show("Something went Wrong");
+                                MessageBox.Show(@"Something went Wrong");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Product Name cannot be empty");
+                            MessageBox.Show(@"Product Name cannot be empty");
                             TxtName.Focus();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Size cannot be empty");
+                        MessageBox.Show(@"Size cannot be empty");
                         TxtSize.Focus();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Color cannot be empty");
+                    MessageBox.Show(@"Color cannot be empty");
                     TxtColor.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("SKU Number cannot be empty");
+                MessageBox.Show(@"SKU Number cannot be empty");
                 TxtSKUNum.Focus();
             }
         }
@@ -276,13 +285,11 @@ namespace BabatyeInventory
 
         private void TxtSKUNum_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TxtSKUNum.Text))
-            {
-                cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                label1.Text = cloth.ProductColor();
-                label2.Text = cloth.ProductSize();
-                label3.Text = cloth.ProductName();
-            }
+            if (string.IsNullOrEmpty(TxtSKUNum.Text)) return;
+            _cloth.SKUNumber = TxtSKUNum.Text.Trim();
+            label1.Text = _cloth.ProductColor();
+            label2.Text = _cloth.ProductSize();
+            label3.Text = _cloth.ProductName();
         }
 
         private void PBInsert_Click(object sender, EventArgs e)
@@ -295,146 +302,130 @@ namespace BabatyeInventory
             AddNewItem();
         }
 
-        void OpenKeywordsFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private static void OpenKeywordsFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            OpenFileDialog fileDialog = sender as OpenFileDialog;
-            string selectedFile = fileDialog.FileName;
-            if (string.IsNullOrEmpty(selectedFile) || selectedFile.Contains(".lnk"))
+            if (sender is OpenFileDialog fileDialog)
             {
-                MessageBox.Show("Please select a valid Excel File");
-                e.Cancel = true;
+                var selectedFile = fileDialog.FileName;
+                if (!string.IsNullOrEmpty(selectedFile) && !selectedFile.Contains(".lnk")) return;
             }
+
+            MessageBox.Show(@"Please select a valid Excel File");
+            e.Cancel = true;
             return;
         }
 
         private void BtnReadFromExcel_Click(object sender, EventArgs e)
         {
-            OpenFileDialog Ofd = new OpenFileDialog
+            var ofd = new OpenFileDialog
             {
                 Multiselect = false,
                 ValidateNames = true,
                 DereferenceLinks = false, // Will return .lnk in shortcuts.
                 //Filter = @" Excel Files(.xls)|*.xls| Excel Files(.xlsx) | *.xlsx | Excel Files(*.xlsm) | *.xlsm | CSV Files(*.csv) | *.csv"
             };
-            Ofd.FileOk += new System.ComponentModel.CancelEventHandler(OpenKeywordsFileDialog_FileOk);
-            if (Ofd.ShowDialog() == DialogResult.OK)
+            ofd.FileOk += new System.ComponentModel.CancelEventHandler(OpenKeywordsFileDialog_FileOk);
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                filePath = Ofd.FileName;
-                LblMessage.Text = "Importing excel file...";
+                _filePath = ofd.FileName;
+                LblMessage.Text = @"Importing excel file...";
             }
-            TotalRows = 0;
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            Excel.Range range;
+            _totalRows = 0;
+            var xlApp = new Excel.Application();
+            if (_filePath == "") return;
+            var totalRows = 0;
+            var xlWorkBook = xlApp.Workbooks.Open(_filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            var xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Item[1];
+            totalRows = xlWorkSheet.UsedRange.Rows.Count;
+            PBLoading.Visible = true;
+            PBLoading.Maximum = totalRows; // your loop max no.
+            PBLoading.Minimum = 0;
+            Excel.Range range = xlWorkSheet.UsedRange.Columns[1];
+            var rw = range.Rows.Count;
+            var cl = 1;
             int rCnt;
-            int cCnt;
-            int rw = 0;
-            int cl = 0;
-            xlApp = new Excel.Application();
-            if (filePath != "")
+            for (rCnt = 2; rCnt <= rw; rCnt++)
             {
-                int totalRows = 0;
-                xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                totalRows = xlWorkSheet.UsedRange.Rows.Count;
-                PBLoading.Visible = true;
-                PBLoading.Maximum = totalRows; // your loop max no.
-                PBLoading.Minimum = 0;
-                range = xlWorkSheet.UsedRange.Columns[1];
-                rw = range.Rows.Count;
-                cl = 1;
-                for (rCnt = 2; rCnt <= rw; rCnt++)
+                int cCnt;
+                for (cCnt = 1; cCnt <= cl; cCnt++)
                 {
-                    for (cCnt = 1; cCnt <= cl; cCnt++)
-                    {
-                        TotalRows++;
-                        PBLoading.Value = TotalRows;
-                    }  
+                    _totalRows++;
+                    PBLoading.Value = _totalRows;
                 }
-                LoadDGV();
-                xlWorkBook.Close(true, null, null);
-                xlApp.Quit();
-                timer1.Enabled = true;
-                LblMessage.ForeColor = Color.Green;
-                LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
-                BtnLoad.Enabled = true;
-                Marshal.ReleaseComObject(xlWorkSheet);
-                Marshal.ReleaseComObject(xlWorkBook);
-                Marshal.ReleaseComObject(xlApp);
             }
+            LoadDgv();
+            xlWorkBook.Close(true, null, null);
+            xlApp.Quit();
+            timer1.Enabled = true;
+            LblMessage.ForeColor = Color.Green;
+            LblMessage.Text = _totalRows + @" Rows Imported Successfully!";
+            BtnLoad.Enabled = true;
+            Marshal.ReleaseComObject(xlWorkSheet);
+            Marshal.ReleaseComObject(xlWorkBook);
+            Marshal.ReleaseComObject(xlApp);
         }
 
         private void BtnLoad_Click(object sender, EventArgs e)
         {
-            TotalProducts = 0;          
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            Excel.Range range;
-            string str;
-            int rCnt;
-            int cCnt;
-            int rw = 0;
-            int cl = 0;
-            xlApp = new Excel.Application();
-            if (filePath != "")
+            TotalProducts = 0;
+            var xlApp = new Excel.Application();
+            if (_filePath != "")
             {
-                xlWorkBook = xlApp.Workbooks.Open(filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-                xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                range = xlWorkSheet.UsedRange.Columns[1];
-                rw = range.Rows.Count;
-                cl = 1;               
+                var xlWorkBook = xlApp.Workbooks.Open(_filePath, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                var xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Item[1];
+                Excel.Range range = xlWorkSheet.UsedRange.Columns[1];
+                var rw = range.Rows.Count;
+                var cl = 1;
+                int rCnt;
                 for (rCnt = 2; rCnt <= rw; rCnt++)
                 {
+                    int cCnt;
                     for (cCnt = 1; cCnt <= cl; cCnt++)
                     {
-                        str = (string)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
-                        if (!string.IsNullOrEmpty(str))
+                        var str = (string)(range.Cells[rCnt, cCnt] as Excel.Range)?.Value2;
+                        if (string.IsNullOrEmpty(str)) continue;
+                        TxtSKUNum.Text = str;
+                        _cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                        var result = _dal.InsertCloth(_cloth);
+                        if (result == 0)
                         {
-                            TxtSKUNum.Text = str;
-                            cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                            int Result = dal.InsertCloth(cloth);
-                            if (Result == 0)
+                            DialogResult dialogResult = MessageBox.Show(@"This item does not exist, would you like add it?", @"Item Not Exist!", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
-                                if (dialogResult == DialogResult.Yes)
-                                {
-                                    cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                                    TxtColor.Text = cloth.ProductColor();
-                                    TxtSize.Text = cloth.ProductSize();
-                                    NewProductColor = TxtColor.Text.Trim();
-                                    NewProductSize = TxtSize.Text.Trim();
-                                    NewProductName = TxtName.Text.Trim();
-                                    NewSKUNumber = TxtSKUNum.Text.Trim();
-                                    AddProduct Ap = new AddProduct();
-                                    Ap.ShowDialog();
-                                }
+                                _cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                                TxtColor.Text = _cloth.ProductColor();
+                                TxtSize.Text = _cloth.ProductSize();
+                                NewProductColor = TxtColor.Text.Trim();
+                                NewProductSize = TxtSize.Text.Trim();
+                                NewProductName = TxtName.Text.Trim();
+                                NewSkuNumber = TxtSKUNum.Text.Trim();
+                                AddProduct Ap = new AddProduct();
+                                Ap.ShowDialog();
                             }
-                            TotalProducts += Result;
-                            LblAddedItems.Text = TotalProducts.ToString();
-                            PanelAddedItems.Visible = true;
-                            LoadDGV();
                         }
+                        TotalProducts += result;
+                        LblAddedItems.Text = TotalProducts.ToString();
+                        PanelAddedItems.Visible = true;
+                        LoadDgv();
                     }
                 }
 
-                LoadDGV();
+                LoadDgv();
                 xlWorkBook.Close(true, null, null);
                 xlApp.Quit();
                 Marshal.ReleaseComObject(xlWorkSheet);
                 Marshal.ReleaseComObject(xlWorkBook);
                 Marshal.ReleaseComObject(xlApp);
-                DialogResult dr = MessageBox.Show(TotalProducts.ToString() + " Products Added Successfully!, would you like to delete excel source file?", "Confirmation to remove the source file!", MessageBoxButtons.YesNo);
+                var dr = MessageBox.Show(TotalProducts.ToString() + @" Products Added Successfully!, would you like to delete excel source file?", @"Confirmation to remove the source file!", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
-                    FileSystem.DeleteFile(filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
+                    FileSystem.DeleteFile(_filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
                 BtnLoad.Enabled = false;
                 PanelAddedItems.Visible = false;
-                string ClientDB = "Data Source= babatye.db; Version=3; FailIfMissing=True; Foreign Keys=True;";
-                string ServerDB = "workstation id = babatye.mssql.somee.com; packet size = 4096; user id = babatye_SQLLogin_1; pwd=2jdfhb4nco;data source = babatye.mssql.somee.com; persist security info=False;initial catalog = babatye; MultipleActiveResultSets=True";
+                const string clientDb = "Data Source= babatye.db; Version=3; FailIfMissing=True; Foreign Keys=True;";
+                const string serverDb = "workstation id = babatye.mssql.somee.com; packet size = 4096; user id = babatye_SQLLogin_1; pwd=2jdfhb4nco;data source = babatye.mssql.somee.com; persist security info=False;initial catalog = babatye; MultipleActiveResultSets=True";
                 //Begin SyNc Process
-                var serverProvider = new SqlSyncProvider(ClientDB);
-                var clientProvider = new SqlSyncProvider(ServerDB);
+                var serverProvider = new SqlSyncProvider(clientDb);
+                var clientProvider = new SqlSyncProvider(serverDb);
 
                 // Tables involved in the sync process:
                 var tables = new string[] { "tbl_clothes" };
@@ -448,7 +439,7 @@ namespace BabatyeInventory
                     var s1 = agent.SynchronizeAsync();
 
                     // Write results
-                    MessageBox.Show("Successfully Synced");
+                    MessageBox.Show(@"Successfully Synced");
                 }
                 catch (Exception ex)
                 {
@@ -457,13 +448,14 @@ namespace BabatyeInventory
             }
             else
             {
-                MessageBox.Show("File Name Not Selected");
+                MessageBox.Show(@"File Name Not Selected");
             }
         }
 
         private void TxtFilterBySKU_KeyUp(object sender, KeyEventArgs e)
         {
-            (DGVExistingItems.DataSource as DataTable).DefaultView.RowFilter = string.Format("SKU LIKE '{0}%' OR SKU LIKE '% {0}%' OR NAME LIKE '{0}%' OR NAME LIKE '% {0}%' OR Size LIKE '{0}%' OR Size LIKE '% {0}%' OR Color LIKE '{0}%' OR Color LIKE '% {0}%' ", TxtFilterBySKU.Text);
+            ((DataTable) DGVExistingItems.DataSource).DefaultView.RowFilter = string.Format(
+                @"SKU LIKE '%{0}%' OR NAME LIKE '%{0}%' OR Size LIKE '%{0}%' OR Color LIKE '%{0}%'", TxtFilterBySKU.Text);
         }
 
         private void TxtName_KeyPress(object sender, KeyPressEventArgs e)
@@ -471,6 +463,7 @@ namespace BabatyeInventory
             if (e.KeyChar == 13)
             {
                 InsertProduct();
+                //this is a new comment 
             }
         }
 
@@ -478,7 +471,7 @@ namespace BabatyeInventory
         {
             LblMessage.Text = "";
             PBLoading.Visible = false;
-            LblMessage.ForeColor = Color.Red;
+            LblMessage.ForeColor = Color.FromArgb(255, 0, 0);
             timer2.Enabled = false ;
             timer2.Stop();
         }
@@ -487,7 +480,7 @@ namespace BabatyeInventory
         {
             if (LblMessage.Text == "")
             {
-                LblMessage.Text = TotalRows.ToString() + " Rows Imported Successfully!";
+                LblMessage.Text = _totalRows.ToString() + @" Rows Imported Successfully!";
             }
             else
             {
