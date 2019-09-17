@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using Dotmim.Sync;
+using Dotmim.Sync.SqlServer;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Data;
 using System.Drawing;
@@ -122,28 +124,59 @@ namespace BabatyeInventory
 
         public void LoadDGV()
         {
-           // DGVExistingItems.DataSource = dal.LoadDGV();
+            DGVExistingItems.DataSource = dal.LoadDGV();
 
-           // //set autosize mode
-           //  DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-           // //DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-           // for(int i=0;i<DGVExistingItems.Columns.Count;i=i+2)
-           //  DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
+            //set autosize mode
+            DGVExistingItems.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //DGVExistingItems.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            for (int i = 0; i < DGVExistingItems.Columns.Count; i = i + 2)
+                DGVExistingItems.Columns[i].DefaultCellStyle.BackColor = Color.LightGray;
 
 
-           //// DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-           // //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            // DGVExistingItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //DGVExistingItems.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-           // //datagrid has calculated it's widths so we can store them
-           // for (int i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
-           // {
-           //     //store autosized widths
-           //     int colw = DGVExistingItems.Columns[i].Width;
-           //     //remove autosizing
-           //     DGVExistingItems.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-           //     //set width to calculated by autosize
-           //     DGVExistingItems.Columns[i].Width = colw;
-           // }
+            //datagrid has calculated it's widths so we can store them
+            for (int i = 0; i <= DGVExistingItems.Columns.Count - 1; i++)
+            {
+                //store autosized widths
+                int colw = DGVExistingItems.Columns[i].Width;
+                //remove autosizing
+                DGVExistingItems.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                //set width to calculated by autosize
+                DGVExistingItems.Columns[i].Width = colw;
+            }
+        }
+
+        public async System.Threading.Tasks.Task DataSyncAsync()
+        {
+            // Create 2 Sql Sync providers
+            var serverProvider = new SqlSyncProvider(@"workstation id = babatye.mssql.somee.com; packet size = 4096; user id = babatye_SQLLogin_1; pwd=2jdfhb4nco;data source = babatye.mssql.somee.com; persist security info=False;initial catalog = babatye; MultipleActiveResultSets=True");
+            var clientProvider = new SqlSyncProvider(@"Data Source= babatye.db; Version=3; FailIfMissing=True; Foreign Keys=True;");
+
+            // Tables involved in the sync process:
+            var tables = new string[] {"tbl_clothes"};
+
+            // Creating an agent that will handle all the process
+            var agent = new SyncAgent(clientProvider, serverProvider, tables);
+
+            do
+            {
+                try
+                {
+                    // Launch the sync process
+                    var s1 = await agent.SynchronizeAsync();
+
+                    // Write results
+                    Console.WriteLine(s1);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            } while (Console.ReadKey().Key != ConsoleKey.Escape);
+
+            Console.WriteLine("End");
         }
 
         public void HideTextBoxes()
@@ -397,6 +430,28 @@ namespace BabatyeInventory
                     FileSystem.DeleteFile(filePath, UIOption.OnlyErrorDialogs, RecycleOption.SendToRecycleBin, UICancelOption.ThrowException);
                 BtnLoad.Enabled = false;
                 PanelAddedItems.Visible = false;
+                //Begin Asyc Process
+                var serverProvider = new SqlSyncProvider(DbConn.ClientDB);
+                var clientProvider = new SqlSyncProvider(DbConn.ServerDB);
+
+                // Tables involved in the sync process:
+                var tables = new string[] { "tbl_clothes" };
+
+                // Creating an agent that will handle all the process
+                var agent = new SyncAgent(clientProvider, serverProvider, tables);
+
+                try
+                {
+                    // Launch the sync process
+                    var s1 = agent.SynchronizeAsync();
+
+                    // Write results
+                    MessageBox.Show("Successfully Synced");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
@@ -449,6 +504,11 @@ namespace BabatyeInventory
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void MainBorder_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

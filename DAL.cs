@@ -12,7 +12,7 @@ namespace BabatyeInventory
         readonly DbConn C = new DbConn();
         public int InsertCloth(Cloth cloth)
         {
-            string sql = "UPDATE tbl_clothes SET tbl_clothes.Count = Count + 1 WHERE tbl_clothes.SKU = @SKUNumber";
+            string sql = "UPDATE tbl_clothes SET Count = Count + 1 WHERE SKU = @SKUNumber";
 
             int result = 0;
             try
@@ -26,18 +26,17 @@ namespace BabatyeInventory
                     try
                     {
                         result = cmd.ExecuteNonQuery();
+                        //MessageBox.Show(result.ToString());
                     }
                     catch (SQLiteException ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
-                }              
-                return result;
+                }                            
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                return 0;
             }
             finally
             {
@@ -46,6 +45,7 @@ namespace BabatyeInventory
                     C.Con.Close();
                 }
             }
+            return result;
         }
 
         public int AddNewCloth(Cloth cloth)

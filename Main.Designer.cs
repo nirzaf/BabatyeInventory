@@ -343,6 +343,7 @@
             this.MainBorder.Size = new System.Drawing.Size(1280, 768);
             this.MainBorder.TabIndex = 99;
             this.MainBorder.UseVisualStyleBackColor = false;
+            this.MainBorder.Click += new System.EventHandler(this.MainBorder_Click);
             // 
             // DGVExistingItems
             // 
