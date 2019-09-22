@@ -46,61 +46,42 @@ namespace BabatyeInventory
 
         public void InsertProduct()
         {
-            cloth.SKUNumber = TxtSKUNum.Text.Trim();
-            if (!string.IsNullOrEmpty(TxtName.Text.Trim()))
+            if (string.IsNullOrEmpty(TxtSKUNum.Text))
             {
-                cloth.Name = TxtName.Text.Trim();
+                MessageBox.Show("SKU Number Cannot be Empty");
+                TxtSKUNum.Focus();
             }
             else
             {
-                TxtName.Focus();
-            }
-            if (!string.IsNullOrEmpty(TxtColor.Text.Trim()))
-            {
-                cloth.Color = cloth.ProductColor();
-            }
-            else
-            {
-                TxtColor.Enabled = true;
-                TxtColor.Focus();
-            }
-            if (!string.IsNullOrEmpty(TxtSize.Text.Trim()))
-            {
-                cloth.Size = cloth.ProductSize();
-            }
-            else
-            {
-                TxtSize.Enabled = true;
-                TxtSize.Focus();
-            }
 
-            int Result = dal.InsertCloth(cloth);
-            try
-            {
-                if (Result > 0)
+                int Result = dal.InsertCloth(cloth);
+                try
                 {
-                    MessageBox.Show("Product Added Successfully");
-                    LoadDGV();
+                    if (Result > 0)
+                    {
+                        MessageBox.Show("Product Added Successfully");
+                        LoadDGV();
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                             cloth.SKUNumber = TxtSKUNum.Text.Trim();
+                             TxtColor.Text = cloth.ProductColor();
+                             TxtSize.Text = cloth.ProductSize();
+                             DisplayTextBoxes();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                             return;
+                        }
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    DialogResult dialogResult = MessageBox.Show("This item does not exist, would you like add it?", "Item Not Exist!", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        cloth.SKUNumber = TxtSKUNum.Text.Trim();
-                        TxtColor.Text = cloth.ProductColor();
-                        TxtSize.Text = cloth.ProductSize();
-                        DisplayTextBoxes();
-                    }
-                    else if (dialogResult == DialogResult.No)
-                    {
-                        return;
-                    }
+                        MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
