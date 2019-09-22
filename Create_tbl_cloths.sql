@@ -1,0 +1,18 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_cloths](
+	[SKU] [nvarchar](30) NOT NULL,
+	[Name] [nvarchar](150) NOT NULL,
+	[Size] [nvarchar](25) NOT NULL,
+	[Color] [nvarchar](50) NOT NULL,
+	[Count] [int] NOT NULL,
+ CONSTRAINT [PK_tbl_cloths] PRIMARY KEY CLUSTERED 
+(
+	[SKU] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[tbl_cloths] ADD  CONSTRAINT [DF_tbl_cloths_Count]  DEFAULT ((1)) FOR [Count]
+GO
